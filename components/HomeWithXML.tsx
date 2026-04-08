@@ -107,7 +107,7 @@ export default function HomeWithXML() {
           </motion.div>
           <div>
             <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Simulator Quiz
+              MIP Quiz Parcial 1
             </h1>
             <p className="text-xs text-muted-foreground">Cargado desde XML ({questions.length} preguntas)</p>
           </div>
@@ -135,7 +135,7 @@ export default function HomeWithXML() {
         className="border-t border-border/50 backdrop-blur-md bg-background/80 mt-16"
       >
         <div className="max-w-4xl mx-auto px-4 py-6 text-center text-sm text-muted-foreground">
-          <p>Simulator Quiz • Preguntas cargadas desde XML</p>
+          <p>MIP Quiz Parcial 1 • Preguntas cargadas desde XML</p>
         </div>
       </motion.footer>
     </div>
