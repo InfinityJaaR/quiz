@@ -238,6 +238,7 @@ export default function QuizScreen() {
       {/* Pregunta */}
       <Card className="p-8 bg-card border-border">
         <QuestionFactory
+          key={currentQuestionIndex}
           question={currentQuestion}
           isAnswered={isAnswered}
           isCorrect={isCorrect}
