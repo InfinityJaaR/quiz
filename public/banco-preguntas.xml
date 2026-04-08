@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <!-- Pregunta 1: Verdadero/Falso -->
+  <question id="q1" type="true-false">
+    <text>El signo del número 0000A0C7h escrito en formato hexadecimal de 16 bit es negativo.</text>
+    <answer>true</answer>
+    <note>En formato de 16 bits, el número es A0C7h. El primer dígito 'A' en binario es '1010'. Como el bit más significativo (MSB) es 1, el número se interpreta como negativo en complemento a dos.</note>
+  </question>
+
+  <question id="q2" type="true-false">
+    <text>John Von Neumann introdujo el concepto de "Programa Almacenado".</text>
+    <answer>true</answer>
+    <note>El documento menciona explícitamente a John Von Neumann asociado al concepto de "Programa Almacenado" en la sección de conceptos básicos.</note>
+  </question>
+
+  <question id="q3" type="true-false">
+    <text>El Lenguaje de Máquina es considerado la primera abstracción de los códigos de operación.</text>
+    <answer>false</answer>
+    <note>El texto define al Lenguaje de Máquina como el más primitivo; es el Lenguaje Ensamblador el que se define como la "primera abstracción".</note>
+  </question>
+
+  <question id="q4" type="true-false">
+    <text>En una máquina "Little Endian", el byte más significativo se almacena en la dirección de memoria más baja.</text>
+    <answer>false</answer>
+    <note>En Little Endian, el byte menos significativo va primero. El almacenamiento del byte más significativo en la dirección más baja corresponde a "Big Endian".</note>
+  </question>
+
+  <question id="q5" type="true-false">
+    <text>El registro IP (Instruction Pointer) se incrementa automáticamente después de leer una instrucción.</text>
+    <answer>true</answer>
+    <note>Según el pseudocódigo del ciclo de ejecución, uno de los pasos inmediatos tras leer la instrucción es "Incrementar el puntero de instrucción (ip)".</note>
+  </question>
+
+  <question id="q6" type="true-false">
+    <text>El microprocesador 8086 tiene un bus de direcciones de 20 bits, lo que permite direccionar hasta 1 MB de memoria.</text>
+    <answer>true</answer>
+    <note>2 elevado a la 20 es igual a 1,048,576 bytes, lo cual equivale exactamente a 1 Megabyte.</note>
+  </question>
+
+  <!-- Pregunta 2: Selección Única -->
+  <question id="q7" type="single-choice" correct="c">
+    <text>Sección del procesador que coordina los procesos de Fetch y Execute.</text>
+    <option id="a">Los Registros de Segmento</option>
+    <option id="b">Unidad Aritmética y Lógica</option>
+    <option id="c">Unidad de Control</option>
+    <option id="d">Unidad Interface del Bus</option>
+    <option id="e">Execution Unit</option>
+    <note>La Unidad de Control es el "cerebro" que genera las señales de temporización para buscar (fetch) y ejecutar instrucciones. La BIU (d) solo se encarga del movimiento de datos al bus, no de la coordinación del ciclo completo.</note>
+  </question>
+
+  <question id="q8" type="single-choice" correct="b">
+    <text>¿En qué año se introdujo el Lenguaje Ensamblador según la línea de tiempo?</text>
+    <option id="a">1952</option>
+    <option id="b">1951</option>
+    <option id="c">1957</option>
+    <option id="d">1959</option>
+    <note>La línea de tiempo de Isaac Vázquez sitúa al Ensamblador en el año 1951.</note>
+  </question>
+
+  <question id="q9" type="single-choice" correct="a">
+    <text>¿Cuál es la unidad mínima direccionable en la memoria del computador?</text>
+    <option id="a">Byte</option>
+    <option id="b">Nibble</option>
+    <option id="c">Word</option>
+    <option id="d">Bit</option>
+    <note>El texto indica que el byte es la unidad mínima direccionable, lo que significa que puede ser leído o escrito según su posición.</note>
+  </question>
+
+  <question id="q10" type="single-choice" correct="d">
+    <text>¿Qué registro es el único que puede ser usado como dividendo en una operación de división?</text>
+    <option id="a">BX</option>
+    <option id="b">CX</option>
+    <option id="c">DX</option>
+    <option id="d">AX</option>
+    <note>El registro AX (Acumulador) tiene la especialización exclusiva de ser usado como multiplicando o dividendo.</note>
+  </question>
+
+  <question id="q11" type="single-choice" correct="c">
+    <text>¿Qué modo de funcionamiento del procesador actúa como si fuera un Intel 8086 original?</text>
+    <option id="a">Modo Protegido</option>
+    <option id="b">Modo de Administración del Sistema</option>
+    <option id="c">Modo de Dirección Real</option>
+    <option id="d">Modo Virtual 8086</option>
+    <note>El modo de dirección real es aquel donde el procesador actúa con las limitaciones y comportamiento del 8086.</note>
+  </question>
+
+  <question id="q12" type="single-choice" correct="b">
+    <text>¿Qué componente de la CPU realiza las operaciones lógicas AND, OR y NOT?</text>
+    <option id="a">Unidad de Control</option>
+    <option id="b">ALU</option>
+    <option id="c">Registros de Índice</option>
+    <option id="d">Bus de Direcciones</option>
+    <note>La Unidad Aritmética y Lógica (ALU) es la encargada de ejecutar tanto operaciones matemáticas como lógicas.</note>
+  </question>
+
+  <question id="q13" type="single-choice" correct="a">
+    <text>¿Cuál es el tamaño de la cola de prefetch en el procesador 8086 original?</text>
+    <option id="a">6 bytes</option>
+    <option id="b">4 bytes</option>
+    <option id="c">8 bytes</option>
+    <option id="d">16 bytes</option>
+    <note>El documento especifica una diferencia entre el 8086 y 8088: el tamaño de la cola es de 6 y 4 bytes respectivamente.</note>
+  </question>
+
+  <!-- Pregunta 3: Selección Múltiple -->
+  <question id="q14" type="multiple-choice" correct="a,f,g">
+    <text>Marque todas las opciones que considere sean Ventajas del Lenguaje Ensamblador.</text>
+    <option id="a">Eficiencia de tamaño</option>
+    <option id="b">Tiempo de programación</option>
+    <option id="c">Programas fuentes grandes</option>
+    <option id="d">Falta de portabilidad</option>
+    <option id="e">Peligro de afectar recursos inesperadamente</option>
+    <option id="f">Velocidad</option>
+    <option id="g">Flexibilidad</option>
+    <note>Ensamblador permite acceso directo al hardware (flexibilidad), código muy compacto (eficiencia) y ejecución optimizada (velocidad). Los puntos b, c, d y e son desventajas.</note>
+  </question>
+
+  <question id="q15" type="multiple-choice" correct="b,c,d">
+    <text>Seleccione los componentes internos de la Unidad de Ejecución (EU).</text>
+    <option id="a">Cola de prefetch</option>
+    <option id="b">ALU</option>
+    <option id="c">Registro de Banderas</option>
+    <option id="d">Registros de propósito general</option>
+    <option id="e">Generador de direcciones físicas</option>
+    <note>La EU contiene la ALU, Banderas, registros generales, de índice y la unidad de control. La cola y el generador de direcciones son de la BIU.</note>
+  </question>
+
+  <question id="q16" type="multiple-choice" correct="a,c,e">
+    <text>Marque las ventajas del Lenguaje Ensamblador mencionadas en el texto.</text>
+    <option id="a">Velocidad</option>
+    <option id="b">Portabilidad</option>
+    <option id="c">Flexibilidad</option>
+    <option id="d">Mantenimiento de códigos extensos</option>
+    <option id="e">Eficiencia de tamaño</option>
+    <note>Las tres ventajas explícitas son Velocidad, Eficiencia de tamaño y Flexibilidad.</note>
+  </question>
+
+  <question id="q17" type="multiple-choice" correct="a,b,d">
+    <text>¿Cuáles de estos registros tienen 32 bits en la arquitectura 80386?</text>
+    <option id="a">EAX</option>
+    <option id="b">EBP</option>
+    <option id="c">CS</option>
+    <option id="d">ESI</option>
+    <option id="e">DS</option>
+    <note>Los registros de propósito general e índice se extendieron a 32 bits (prefijo E), pero los de segmento (CS, DS, etc.) permanecieron de 16 bits.</note>
+  </question>
+
+  <question id="q18" type="multiple-choice" correct="a,b,c">
+    <text>¿Qué tipos de datos de punto flotante define la arquitectura IA-32?</text>
+    <option id="a">Precisión simple</option>
+    <option id="b">Precisión doble</option>
+    <option id="c">Precisión con doble extensión</option>
+    <option id="d">Precisión cuádruple</option>
+    <note>El documento lista exactamente esos tres tipos bajo el estándar IEEE 754.</note>
+  </question>
+
+  <question id="q19" type="multiple-choice" correct="a,c,d">
+    <text>Eventos que ocurren al procesarse una interrupción:</text>
+    <option id="a">Se introduce el registro de banderas en la pila</option>
+    <option id="b">Se borra el registro AX</option>
+    <option id="c">Se cargan nuevos valores en IP y CS desde el vector</option>
+    <option id="d">Se borran las banderas IF y TF</option>
+    <note>La secuencia incluye salvar banderas, desactivar interrupciones (IF/TF) y cargar la dirección del manejador.</note>
+  </question>
+
+  <question id="q20" type="multiple-choice" correct="b,c,d">
+    <text>Componentes básicos de un Microcomputador:</text>
+    <option id="a">Transistores individuales</option>
+    <option id="b">CPU</option>
+    <option id="c">Memoria</option>
+    <option id="d">Puertos de Entrada/Salida</option>
+    <note>Según el texto, estos tres (CPU, Memoria, E/S) son los componentes principales conectados por el Interconnect.</note>
+  </question>
+
+  <!-- Pregunta 4: Relleno / Texto -->
+  <question id="q21" type="fill-text">
+    <text>¿Qué bandera se activa cuando el resultado de una operación aritmética sin signo es demasiado grande como para ser contenido en el operando destino? ___________</text>
+    <answer>CF</answer>
+    <note>El Carry Flag (CF) se utiliza para detectar desbordamientos en operaciones sin signo (unsigned), mientras que el Overflow Flag (OF) es para operaciones con signo.</note>
+  </question>
+
+  <!-- Pregunta 5: Emparejamiento -->
+  <question id="q22" type="matching">
+    <text>Empareje los nombres del Registro de Banderas con sus respectivos Indicadores.</text>
+    <pair id="m1">
+      <left>Bandera de overflow</left>
+      <right>OF</right>
+    </pair>
+    <pair id="m2">
+      <left>Bandera de resultado cero</left>
+      <right>ZF</right>
+    </pair>
+    <pair id="m3">
+      <left>Bandera de interrupción</left>
+      <right>IF</right>
+    </pair>
+    <pair id="m4">
+      <left>Bandera de signo</left>
+      <right>SF</right>
+    </pair>
+    <pair id="m5">
+      <left>Bandera de dirección</left>
+      <right>DF</right>
+    </pair>
+    <pair id="m6">
+      <left>Bandera Trampa</left>
+      <right>TF</right>
+    </pair>
+    <note>Cada mnemónico corresponde a la función en inglés: O(verflow), Z(ero), I(nterrupt), S(ign), D(irection) y T(rap).</note>
+  </question>
+
+<question id="q23" type="matching">
+    <text>Empareje cada registro con su función o especialización.</text>
+    <pair id="m1">
+      <left>CX</left>
+      <right>Registro contador para ciclos</right>
+    </pair>
+    <pair id="m2">
+      <left>DX</left>
+      <right>Acceso a puertos y parte alta de 32 bits</right>
+    </pair>
+    <pair id="m3">
+      <left>SP</left>
+      <right>Apuntador al tope de la pila</right>
+    </pair>
+    <pair id="m4">
+      <left>SI</left>
+      <right>Apuntador a la fuente (Source Index)</right>
+    </pair>
+    <note>Cada registro tiene una especialidad: CX para loops, DX para I/O, SP para la pila y SI para lectura de memoria.</note>
+  </question>
+
+  <question id="q24" type="matching">
+    <text>Empareje el nivel jerárquico del computador con su descripción.</text>
+    <pair id="m1">
+      <left>Level 5</left>
+      <right>Assembly Language</right>
+    </pair>
+    <pair id="m2">
+      <left>Level 3</left>
+      <right>Operating System</right>
+    </pair>
+    <pair id="m3">
+      <left>Level 0</left>
+      <right>Digital Logic (Circuits, Gates)</right>
+    </pair>
+    <note>Basado en la tabla de Niveles Jerárquicos del Computador.</note>
+  </question>
+
+  <question id="q25" type="matching">
+    <text>Empareje el microprocesador con su característica clave.</text>
+    <pair id="m1">
+      <left>4004</left>
+      <right>Primer microprocesador (4 bits)</right>
+    </pair>
+    <pair id="m2">
+      <left>80286</left>
+      <right>Aparece el modo protegido y 16MB RAM</right>
+    </pair>
+    <pair id="m3">
+      <left>Pentium</left>
+      <right>Doble pipeline y bus de 64 bits</right>
+    </pair>
+    <note>Resumen de la evolución de procesadores Intel detallada en el PDF.</note>
+  </question>
+
+  <!-- Pregunta 6: Selección Única -->
+  <question id="q26" type="single-choice" correct="c">
+    <text>Seleccione la opción que le permite identificar todos los componentes del Bus Interface Unit (BIU).</text>
+    <option id="a">Registros de segmentos, registros generales, generador de direcciones físicas y Bus C</option>
+    <option id="b">Registros de segmentos, cola de prefetch, generador de direcciones físicas y registros generales</option>
+    <option id="c">Registros de segmentos, cola de prefetch, Bus C y generador de direcciones físicas</option>
+    <option id="d">Registros generales, cola de prefetch, generador de direcciones físicas y Bus C</option>
+    <option id="e">Cola de prefetch, registros de segmentos, registros generales, generador de direcciones físicas y Bus C</option>
+    <note>La BIU contiene los registros de segmento (CS, DS, SS, ES), la cola de instrucciones, el sumador de direcciones y el bus interno. Los "Registros Generales" (AX, BX, etc.) pertenecen a la EU (Execution Unit).</note>
+  </question>
+
+  <question id="q27" type="multiple-choice" correct="a,c,e">
+    <text>Sobre el Lenguaje Ensamblador, ¿cuáles de estas afirmaciones son ventajas mencionadas en el texto?</text>
+    <option id="a">Eficiencia de tamaño</option>
+    <option id="b">Portabilidad entre plataformas</option>
+    <option id="c">Velocidad de ejecución</option>
+    <option id="d">Facilidad de organización en código extenso</option>
+    <option id="e">Flexibilidad</option>
+    <note>El texto lista Velocidad, Eficiencia y Flexibilidad. La falta de portabilidad y dificultad de mantenimiento son desventajas.</note>
+  </question>
+
+  <question id="q28" type="multiple-choice" correct="a,b,d">
+    <text>¿Qué registros pertenecen al grupo de "Registros de Segmento" en un procesador 8086?</text>
+    <option id="a">CS (Code Segment)</option>
+    <option id="b">DS (Data Segment)</option>
+    <option id="c">AX (Accumulator)</option>
+    <option id="d">SS (Stack Segment)</option>
+    <option id="e">BP (Base Pointer)</option>
+    <note>CS, DS, SS y ES son los registros de segmento. AX es de propósito general y BP es de índice.</note>
+  </question>
+
+  <question id="q29" type="multiple-choice" correct="b,c,d">
+    <text>En el Registro de Banderas, ¿qué bits tienen valores fijos según el diseño?</text>
+    <option id="a">El bit de Signo (SF) siempre es 1</option>
+    <option id="b">El bit 1 siempre vale uno</option>
+    <option id="c">El bit 3 siempre vale cero</option>
+    <option id="d">El bit 5 siempre vale cero</option>
+    <option id="e">El bit de Carry (CF) siempre es 0</option>
+    <note>Se especifica que los bits 3 y 5 siempre valen 0, y el bit 1 siempre vale 1.</note>
+  </question>
+
+  <question id="q30" type="multiple-choice" correct="a,c,d">
+    <text>¿Qué eventos ocurren inmediatamente al producirse una interrupción?</text>
+    <option id="a">El registro de banderas se introduce en la pila</option>
+    <option id="b">El registro AX se incrementa automáticamente</option>
+    <option id="c">Se borran las banderas IF y TF</option>
+    <option id="d">El contenido de CS e IP se introduce en la pila</option>
+    <option id="e">Se reinicia el procesador</option>
+    <note>La secuencia técnica incluye salvar banderas, limpiar IF/TF y salvar direcciones de retorno (CS:IP) en la pila.</note>
+  </question>
+</quiz>

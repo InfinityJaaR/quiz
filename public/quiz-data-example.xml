@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <!-- Pregunta de Verdadero/Falso -->
+  <question id="q1" type="true-false">
+    <text>¿React es una librería de JavaScript para construir interfaces de usuario?</text>
+    <answer>true</answer>
+    <note>React es una librería (no un framework) desarrollada por Facebook para crear UIs con componentes reutilizables y el patrón Virtual DOM.</note>
+  </question>
+
+  <!-- Pregunta de Selección Única -->
+  <question id="q2" type="single-choice" correct="opt2">
+    <text>¿Cuál es el hook principal para manejar estado en React?</text>
+    <option id="opt1">useContext</option>
+    <option id="opt2">useState</option>
+    <option id="opt3">useReducer</option>
+    <option id="opt4">useEffect</option>
+    <note>useState es el hook fundamental para agregar estado local a componentes funcionales. Retorna el valor actual y una función para actualizarlo.</note>
+  </question>
+
+  <!-- Pregunta de Selección Múltiple -->
+  <question id="q3" type="multiple-choice" correct="opt1,opt3">
+    <text>¿Cuáles de las siguientes son características de Tailwind CSS?</text>
+    <option id="opt1">Clases utilitarias de bajo nivel</option>
+    <option id="opt2">Framework basado en componentes predefinidos</option>
+    <option id="opt3">Personalizable mediante configuración</option>
+    <option id="opt4">Requiere JavaScript para funcionar</option>
+    <note>Tailwind proporciona clases utilitarias y es altamente personalizable. Los componentes son responsabilidad del desarrollador.</note>
+  </question>
+
+  <!-- Pregunta de Relleno de Texto -->
+  <question id="q4" type="fill-text">
+    <text>El hook que reemplaza el ciclo de vida de los componentes en React es: ___________</text>
+    <answer>useEffect</answer>
+    <note>useEffect permite ejecutar efectos secundarios en componentes funcionales, reemplazando componentDidMount, componentDidUpdate y componentWillUnmount.</note>
+  </question>
+
+  <!-- Pregunta de Emparejamiento -->
+  <question id="q5" type="matching">
+    <text>Empareja los conceptos con sus definiciones:</text>
+    <pair id="m1">
+      <left>Virtual DOM</left>
+      <right>Representación en memoria del DOM actual</right>
+    </pair>
+    <pair id="m2">
+      <left>Props</left>
+      <right>Parámetros inmutables que pasan datos a componentes</right>
+    </pair>
+    <pair id="m3">
+      <left>State</left>
+      <right>Datos locales mutables que pueden cambiar en el tiempo</right>
+    </pair>
+    <note>Estos son conceptos fundamentales de React que son esenciales para construir aplicaciones eficientes y mantenibles.</note>
+  </question>
+</quiz>
