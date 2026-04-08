@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useCallback, useMemo } from 'react';
-import { QuizQuestion, QuizContextType } from '@/lib/quiz-types';
+import { QuizQuestion, QuizContextType, QuizSaveState } from '@/lib/quiz-types';
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined);
 
@@ -10,113 +10,218 @@ interface QuizProviderProps {
   children: React.ReactNode;
 }
 
+function shuffleArray<T>(arr: T[]): T[] {
+  const result = [...arr];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
+function shuffleOptions(question: QuizQuestion): QuizQuestion {
+  if (question.type === 'single-choice' || question.type === 'multiple-choice') {
+    return { ...question, options: shuffleArray(question.options) };
+  }
+  if (question.type === 'matching') {
+    return { ...question, pairs: shuffleArray(question.pairs) };
+  }
+  return question;
+}
+
+function insertWithGap(
+  currentQueue: QuizQuestion[],
+  currentIndex: number,
+  question: QuizQuestion
+): QuizQuestion[] {
+  const newQueue = [...currentQueue];
+  const minPos = Math.min(currentIndex + 4, newQueue.length);
+  const maxPos = newQueue.length;
+  const insertPos =
+    minPos >= maxPos
+      ? maxPos
+      : Math.floor(Math.random() * (maxPos - minPos + 1)) + minPos;
+  newQueue.splice(insertPos, 0, question);
+  return newQueue;
+}
+
 export function QuizProvider({ questions, children }: QuizProviderProps) {
-  const [queue, setQueue] = useState<QuizQuestion[]>([...questions]);
+  const [originalQuestions] = useState<QuizQuestion[]>(questions);
+
+  const [queue, setQueue] = useState<QuizQuestion[]>(() =>
+    shuffleArray(questions).map(shuffleOptions)
+  );
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [score, setScore] = useState(0);
+  const [correctCount, setCorrectCount] = useState<Map<string, number>>(new Map());
   const [answered, setAnswered] = useState<Map<string, boolean>>(new Map());
   const [isAnswered, setIsAnswered] = useState(false);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [feedback, setFeedback] = useState('');
 
+  const totalQuestions = useMemo(() => originalQuestions.length, [originalQuestions]);
+  const totalGoal = useMemo(() => originalQuestions.length * 3, [originalQuestions]);
+
+  const completedCount = useMemo(() => {
+    let sum = 0;
+    for (const v of correctCount.values()) {
+      sum += Math.min(v, 3);
+    }
+    return sum;
+  }, [correctCount]);
+
+  const score = useMemo(() => {
+    let done = 0;
+    for (const v of correctCount.values()) {
+      if (v >= 3) done++;
+    }
+    return done;
+  }, [correctCount]);
+
+  const progressPercentage = useMemo(() => {
+    if (totalGoal === 0) return 0;
+    return Math.round((completedCount / totalGoal) * 100);
+  }, [completedCount, totalGoal]);
+
   const currentQuestion = useMemo(() => {
     return currentQuestionIndex < queue.length ? queue[currentQuestionIndex] : null;
   }, [queue, currentQuestionIndex]);
 
-  const totalQuestions = useMemo(() => {
-    return new Set(questions.map(q => q.id)).size;
-  }, [questions]);
+  const answerQuestion = useCallback(
+    (answer: any) => {
+      if (!currentQuestion || isAnswered) return;
 
-  const progressPercentage = useMemo(() => {
-    if (totalQuestions === 0) return 0;
-    return Math.round((score / totalQuestions) * 100);
-  }, [score, totalQuestions]);
+      let correct = false;
 
-  const answerQuestion = useCallback((answer: any) => {
-    if (!currentQuestion || isAnswered) return;
+      switch (currentQuestion.type) {
+        case 'true-false': {
+          correct = currentQuestion.correctAnswer === answer;
+          break;
+        }
+        case 'single-choice': {
+          correct = currentQuestion.correctAnswerId === answer;
+          break;
+        }
+        case 'multiple-choice': {
+          const selectedIds = Array.isArray(answer) ? answer : [answer];
+          const correctIds = [...currentQuestion.correctAnswerIds].sort();
+          correct = [...selectedIds].sort().join(',') === correctIds.join(',');
+          break;
+        }
+        case 'fill-text': {
+          correct =
+            answer.trim().toLowerCase() ===
+            currentQuestion.correctAnswer.toLowerCase();
+          break;
+        }
+        case 'matching': {
+          correct = currentQuestion.pairs.every((pair) => answer[pair.id] === pair.id);
+          break;
+        }
+      }
 
-    let correct = false;
+      setIsCorrect(correct);
+      setFeedback(currentQuestion.technicalNote);
+      setIsAnswered(true);
 
-    switch (currentQuestion.type) {
-      case 'true-false': {
-        correct = currentQuestion.correctAnswer === answer;
-        break;
-      }
-      case 'single-choice': {
-        correct = currentQuestion.correctAnswerId === answer;
-        break;
-      }
-      case 'multiple-choice': {
-        const selectedIds = Array.isArray(answer) ? answer : [answer];
-        const correctIds = currentQuestion.correctAnswerIds.sort();
-        correct =
-          selectedIds.sort().join(',') === correctIds.join(',');
-        break;
-      }
-      case 'fill-text': {
-        correct =
-          answer.trim().toLowerCase() ===
-          currentQuestion.correctAnswer.toLowerCase();
-        break;
-      }
-      case 'matching': {
-        // answer es un objeto { pairId: selectedRightId }
-        correct = currentQuestion.pairs.every((pair) => {
-          return answer[pair.id] === pair.id;
+      const id = currentQuestion.id;
+
+      if (correct) {
+        setCorrectCount((prev) => {
+          const newCount = (prev.get(id) ?? 0) + 1;
+          const next = new Map(prev);
+          next.set(id, newCount);
+          return next;
         });
-        break;
+        setAnswered((prev) => new Map(prev).set(id, true));
+
+        const currentCount = correctCount.get(id) ?? 0;
+        const newCount = currentCount + 1;
+        if (newCount < 3) {
+          setQueue((prev) =>
+            insertWithGap(prev, currentQuestionIndex, shuffleOptions(currentQuestion))
+          );
+        }
+      } else {
+        setAnswered((prev) => new Map(prev).set(id, false));
+        setQueue((prev) =>
+          insertWithGap(prev, currentQuestionIndex, shuffleOptions(currentQuestion))
+        );
       }
-    }
-
-    setIsCorrect(correct);
-    setFeedback(currentQuestion.technicalNote);
-    setIsAnswered(true);
-
-    if (correct) {
-      setScore((prev) => {
-        const uniqueCorrect = answered.get(currentQuestion.id) === true ? prev : prev + 1;
-        return uniqueCorrect;
-      });
-      setAnswered((prev) => new Map(prev).set(currentQuestion.id, true));
-    } else {
-      // Agregar la pregunta incorrecta al final de la cola
-      setQueue((prev) => {
-        const newQueue = [...prev];
-        newQueue.push(currentQuestion);
-        return newQueue;
-      });
-    }
-  }, [currentQuestion, isAnswered, answered]);
+    },
+    [currentQuestion, isAnswered, correctCount, currentQuestionIndex]
+  );
 
   const nextQuestion = useCallback(() => {
-    if (currentQuestionIndex < queue.length - 1) {
-      setCurrentQuestionIndex((prev) => prev + 1);
-      setIsAnswered(false);
-      setIsCorrect(null);
-      setFeedback('');
-    } else {
-      // Quiz completado
-      setIsAnswered(false);
-      setIsCorrect(null);
-      setFeedback('');
-    }
-  }, [currentQuestionIndex, queue.length]);
+    setCurrentQuestionIndex((prev) => prev + 1);
+    setIsAnswered(false);
+    setIsCorrect(null);
+    setFeedback('');
+  }, []);
 
   const resetQuiz = useCallback(() => {
-    setQueue([...questions]);
+    setQueue(shuffleArray(originalQuestions).map(shuffleOptions));
     setCurrentQuestionIndex(0);
-    setScore(0);
+    setCorrectCount(new Map());
     setAnswered(new Map());
     setIsAnswered(false);
     setIsCorrect(null);
     setFeedback('');
-  }, [questions]);
+  }, [originalQuestions]);
 
   const getStats = useCallback(() => {
-    const correct = score;
-    const incorrect = totalQuestions - correct;
-    return { correct, incorrect, total: totalQuestions };
+    return {
+      correct: score,
+      incorrect: totalQuestions - score,
+      total: totalQuestions,
+    };
   }, [score, totalQuestions]);
+
+  const saveProgress = useCallback(() => {
+    const remaining = queue.slice(currentQuestionIndex);
+    const countRecord: Record<string, number> = {};
+    correctCount.forEach((v, k) => {
+      countRecord[k] = v;
+    });
+
+    const state: QuizSaveState = {
+      version: 1,
+      savedAt: new Date().toISOString(),
+      originalQuestions,
+      queue: remaining,
+      correctCount: countRecord,
+    };
+
+    const blob = new Blob([JSON.stringify(state, null, 2)], {
+      type: 'application/json',
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'progreso-quiz.json';
+    a.click();
+    URL.revokeObjectURL(url);
+  }, [queue, currentQuestionIndex, correctCount, originalQuestions]);
+
+  const loadProgress = useCallback(async (file: File) => {
+    const text = await file.text();
+    const state: QuizSaveState = JSON.parse(text);
+
+    if (state.version !== 1) {
+      throw new Error('Formato de archivo de progreso no compatible');
+    }
+
+    const restoredCount = new Map<string, number>(
+      Object.entries(state.correctCount)
+    );
+
+    setQueue(state.queue);
+    setCurrentQuestionIndex(0);
+    setCorrectCount(restoredCount);
+    setAnswered(new Map());
+    setIsAnswered(false);
+    setIsCorrect(null);
+    setFeedback('');
+  }, []);
 
   const value: QuizContextType = {
     questions: queue,
@@ -125,6 +230,9 @@ export function QuizProvider({ questions, children }: QuizProviderProps) {
     queue,
     score,
     totalQuestions,
+    totalGoal,
+    completedCount,
+    correctCount,
     answered,
     isAnswered,
     isCorrect,
@@ -133,13 +241,13 @@ export function QuizProvider({ questions, children }: QuizProviderProps) {
     answerQuestion,
     resetQuiz,
     nextQuestion,
-    getStats
+    getStats,
+    saveProgress,
+    loadProgress,
   };
 
   return (
-    <QuizContext.Provider value={value}>
-      {children}
-    </QuizContext.Provider>
+    <QuizContext.Provider value={value}>{children}</QuizContext.Provider>
   );
 }
 

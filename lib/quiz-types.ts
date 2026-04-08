@@ -67,6 +67,14 @@ export type QuizQuestion =
   | FillTextQuestion 
   | MatchingQuestion;
 
+export interface QuizSaveState {
+  version: 1;
+  savedAt: string;
+  originalQuestions: QuizQuestion[];
+  queue: QuizQuestion[];
+  correctCount: Record<string, number>;
+}
+
 export interface QuizContextType {
   questions: QuizQuestion[];
   currentQuestionIndex: number;
@@ -74,6 +82,9 @@ export interface QuizContextType {
   queue: QuizQuestion[];
   score: number;
   totalQuestions: number;
+  totalGoal: number;
+  completedCount: number;
+  correctCount: Map<string, number>;
   answered: Map<string, boolean>;
   isAnswered: boolean;
   isCorrect: boolean | null;
@@ -83,4 +94,6 @@ export interface QuizContextType {
   resetQuiz: () => void;
   nextQuestion: () => void;
   getStats: () => { correct: number; incorrect: number; total: number };
+  saveProgress: () => void;
+  loadProgress: (file: File) => Promise<void>;
 }

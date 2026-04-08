@@ -1,17 +1,16 @@
 'use client';
 
+import { useRef } from 'react';
 import { useQuiz } from '@/hooks/useQuiz';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import QuestionFactory from '@/components/QuestionFactory';
 import { motion } from 'framer-motion';
-import { RotateCw, Download } from 'lucide-react';
+import { RotateCw, Download, Save, Upload } from 'lucide-react';
 import {
-  getDetailedStats,
   getPerformanceFeedback,
   getMasteryLevel,
-  downloadQuizResults,
 } from '@/lib/quiz-stats';
 
 export default function QuizScreen() {
@@ -21,6 +20,8 @@ export default function QuizScreen() {
     queue,
     score,
     totalQuestions,
+    totalGoal,
+    completedCount,
     isAnswered,
     isCorrect,
     feedback,
@@ -30,29 +31,29 @@ export default function QuizScreen() {
     resetQuiz,
     getStats,
     answered,
+    saveProgress,
+    loadProgress,
   } = useQuiz();
 
-  const isCompleted = currentQuestionIndex >= queue.length;
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const isCompleted = completedCount >= totalGoal && totalGoal > 0;
   const stats = getStats();
-  const detailedStats = getDetailedStats({
-    currentQuestionIndex,
-    currentQuestion,
-    queue,
-    score,
-    totalQuestions,
-    answered,
-    isAnswered,
-    isCorrect,
-    feedback,
-    progressPercentage,
-    answerQuestion,
-    resetQuiz,
-    nextQuestion,
-    getStats,
-    questions: queue,
-  });
-  const performanceFeedback = getPerformanceFeedback(detailedStats.successRate);
-  const masteryLevel = getMasteryLevel(detailedStats.successRate);
+  const successRate = totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0;
+  const performanceFeedback = getPerformanceFeedback(successRate);
+  const masteryLevel = getMasteryLevel(successRate);
+
+  const handleLoadFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      await loadProgress(file);
+    } catch {
+      alert('El archivo de progreso no es válido o está dañado.');
+    } finally {
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
+  };
 
   if (isCompleted) {
     return (
@@ -80,7 +81,7 @@ export default function QuizScreen() {
                 transition={{ delay: 0.3 }}
                 className="p-6 bg-green-900/20 border border-green-600 rounded-lg"
               >
-                <p className="text-sm text-muted-foreground mb-2">Correctas</p>
+                <p className="text-sm text-muted-foreground mb-2">Dominadas</p>
                 <p className="text-3xl font-bold text-green-400">{stats.correct}</p>
               </motion.div>
 
@@ -88,40 +89,27 @@ export default function QuizScreen() {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="p-6 bg-red-900/20 border border-red-600 rounded-lg"
+                className="p-6 bg-blue-900/20 border border-blue-600 rounded-lg"
               >
-                <p className="text-sm text-muted-foreground mb-2">Incorrectas</p>
-                <p className="text-3xl font-bold text-red-400">{stats.incorrect}</p>
+                <p className="text-sm text-muted-foreground mb-2">Total</p>
+                <p className="text-3xl font-bold text-blue-400">{stats.total}</p>
               </motion.div>
 
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="p-6 bg-blue-900/20 border border-blue-600 rounded-lg"
+                className="p-6 bg-purple-900/20 border border-purple-600 rounded-lg"
               >
-                <p className="text-sm text-muted-foreground mb-2">Porcentaje</p>
-                <p className="text-3xl font-bold text-blue-400">
-                  {Math.round((stats.correct / stats.total) * 100)}%
-                </p>
+                <p className="text-sm text-muted-foreground mb-2">Dominio</p>
+                <p className="text-3xl font-bold text-purple-400">{successRate}%</p>
               </motion.div>
             </div>
 
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="text-xl text-foreground"
-            >
-              Has respondido correctamente{' '}
-              <span className="font-bold text-green-400">{stats.correct}</span> de{' '}
-              <span className="font-bold">{stats.total}</span> preguntas.
-            </motion.div>
-
-            <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.65 }}
+              transition={{ delay: 0.55 }}
               className="p-4 bg-blue-900/20 border border-blue-600 rounded-lg"
             >
               <p className="text-sm text-blue-300 mb-1">Nivel de Dominio</p>
@@ -131,7 +119,7 @@ export default function QuizScreen() {
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.7 }}
+              transition={{ delay: 0.6 }}
               className="p-4 bg-purple-900/20 border border-purple-600 rounded-lg"
             >
               <p className="text-sm text-purple-300 mb-1">Evaluación</p>
@@ -141,41 +129,11 @@ export default function QuizScreen() {
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.75 }}
-              className="flex flex-col sm:flex-row gap-3"
+              transition={{ delay: 0.65 }}
             >
-              <Button
-                onClick={resetQuiz}
-                size="lg"
-                className="gap-2 flex-1"
-              >
+              <Button onClick={resetQuiz} size="lg" className="w-full gap-2">
                 <RotateCw className="w-4 h-4" />
                 Reintentar Quiz
-              </Button>
-              <Button
-                onClick={() => downloadQuizResults({
-                  currentQuestionIndex,
-                  currentQuestion,
-                  queue,
-                  score,
-                  totalQuestions,
-                  answered,
-                  isAnswered,
-                  isCorrect,
-                  feedback: '',
-                  progressPercentage,
-                  answerQuestion,
-                  resetQuiz,
-                  nextQuestion,
-                  getStats,
-                  questions: queue,
-                } as any)}
-                variant="outline"
-                size="lg"
-                className="gap-2 flex-1"
-              >
-                <Download className="w-4 h-4" />
-                Descargar Resultados
               </Button>
             </motion.div>
           </div>
@@ -203,31 +161,76 @@ export default function QuizScreen() {
       <Card className="p-6 bg-card border-border">
         <div className="space-y-4">
           <div className="flex justify-between items-center">
-            <h2 className="text-lg font-semibold text-foreground">
-              Pregunta {currentQuestionIndex + 1} de {totalQuestions}
-            </h2>
+            <div>
+              <h2 className="text-lg font-semibold text-foreground">
+                Pregunta {currentQuestionIndex + 1}
+              </h2>
+              <p className="text-xs text-muted-foreground">
+                {queue.length - currentQuestionIndex} restantes en cola
+              </p>
+            </div>
             <div className="text-right">
-              <p className="text-sm text-muted-foreground">Aciertos</p>
-              <p className="text-2xl font-bold text-green-400">{score}/{totalQuestions}</p>
+              <p className="text-sm text-muted-foreground">Progreso</p>
+              <p className="text-2xl font-bold text-green-400">
+                {completedCount}/{totalGoal}
+              </p>
+              <p className="text-xs text-muted-foreground">
+                ({score}/{totalQuestions} dominadas)
+              </p>
             </div>
           </div>
 
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <span className="text-sm text-muted-foreground">Progreso General</span>
-              <span className="text-sm font-medium text-foreground">{progressPercentage}%</span>
+              <span className="text-sm text-muted-foreground">
+                Progreso General
+              </span>
+              <span className="text-sm font-medium text-foreground">
+                {progressPercentage}%
+              </span>
             </div>
             <Progress value={progressPercentage} className="h-2" />
           </div>
 
-          <div className="inline-block px-3 py-1 bg-muted rounded-full">
-            <span className="text-xs font-medium text-muted-foreground">
-              {currentQuestion.type === 'true-false' && 'Verdadero/Falso'}
-              {currentQuestion.type === 'single-choice' && 'Selección Única'}
-              {currentQuestion.type === 'multiple-choice' && 'Selección Múltiple'}
-              {currentQuestion.type === 'fill-text' && 'Relleno de Texto'}
-              {currentQuestion.type === 'matching' && 'Emparejamiento'}
-            </span>
+          <div className="flex items-center gap-2 flex-wrap">
+            <div className="inline-block px-3 py-1 bg-muted rounded-full">
+              <span className="text-xs font-medium text-muted-foreground">
+                {currentQuestion.type === 'true-false' && 'Verdadero/Falso'}
+                {currentQuestion.type === 'single-choice' && 'Selección Única'}
+                {currentQuestion.type === 'multiple-choice' && 'Selección Múltiple'}
+                {currentQuestion.type === 'fill-text' && 'Relleno de Texto'}
+                {currentQuestion.type === 'matching' && 'Emparejamiento'}
+              </span>
+            </div>
+
+            {/* Botones guardar/cargar */}
+            <div className="ml-auto flex gap-2">
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".json"
+                className="hidden"
+                onChange={handleLoadFile}
+              />
+              <Button
+                variant="outline"
+                size="sm"
+                className="gap-1 text-xs h-7 px-2"
+                onClick={saveProgress}
+              >
+                <Save className="w-3 h-3" />
+                Guardar
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                className="gap-1 text-xs h-7 px-2"
+                onClick={() => fileInputRef.current?.click()}
+              >
+                <Upload className="w-3 h-3" />
+                Cargar
+              </Button>
+            </div>
           </div>
         </div>
       </Card>
@@ -249,14 +252,8 @@ export default function QuizScreen() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <Button
-            onClick={nextQuestion}
-            size="lg"
-            className="w-full"
-          >
-            {currentQuestionIndex < queue.length - 1
-              ? 'Siguiente Pregunta'
-              : 'Ver Resultados'}
+          <Button onClick={nextQuestion} size="lg" className="w-full">
+            Siguiente Pregunta
           </Button>
         </motion.div>
       )}
