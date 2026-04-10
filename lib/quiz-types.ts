@@ -1,3 +1,5 @@
+export type QuizMode = 'study' | 'exam';
+
 // Quiz Question Types
 export type QuestionType = 
   | 'true-false' 
@@ -73,6 +75,8 @@ export interface QuizSaveState {
   originalQuestions: QuizQuestion[];
   queue: QuizQuestion[];
   correctCount: Record<string, number>;
+  mode: QuizMode;
+  reps: number;
 }
 
 export interface QuizContextType {
@@ -90,6 +94,8 @@ export interface QuizContextType {
   isCorrect: boolean | null;
   feedback: string;
   progressPercentage: number;
+  mode: QuizMode;
+  reps: number;
   answerQuestion: (answer: any) => void;
   resetQuiz: () => void;
   nextQuestion: () => void;

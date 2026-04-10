@@ -1,12 +1,14 @@
 'use client';
 
 import React, { createContext, useContext, useState, useCallback, useMemo } from 'react';
-import { QuizQuestion, QuizContextType, QuizSaveState } from '@/lib/quiz-types';
+import { QuizQuestion, QuizContextType, QuizSaveState, QuizMode } from '@/lib/quiz-types';
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined);
 
 interface QuizProviderProps {
   questions: QuizQuestion[];
+  reps: number;
+  mode: QuizMode;
   children: React.ReactNode;
 }
 
@@ -45,8 +47,10 @@ function insertWithGap(
   return newQueue;
 }
 
-export function QuizProvider({ questions, children }: QuizProviderProps) {
+export function QuizProvider({ questions, reps, mode, children }: QuizProviderProps) {
   const [originalQuestions] = useState<QuizQuestion[]>(questions);
+  const [currentReps] = useState<number>(reps);
+  const [currentMode] = useState<QuizMode>(mode);
 
   const [queue, setQueue] = useState<QuizQuestion[]>(() =>
     shuffleArray(questions).map(shuffleOptions)
@@ -59,28 +63,32 @@ export function QuizProvider({ questions, children }: QuizProviderProps) {
   const [feedback, setFeedback] = useState('');
 
   const totalQuestions = useMemo(() => originalQuestions.length, [originalQuestions]);
-  const totalGoal = useMemo(() => originalQuestions.length * 3, [originalQuestions]);
+  const totalGoal = useMemo(() => originalQuestions.length * currentReps, [originalQuestions, currentReps]);
 
   const completedCount = useMemo(() => {
     let sum = 0;
     for (const v of correctCount.values()) {
-      sum += Math.min(v, 3);
+      sum += Math.min(v, currentReps);
     }
     return sum;
-  }, [correctCount]);
+  }, [correctCount, currentReps]);
 
   const score = useMemo(() => {
     let done = 0;
     for (const v of correctCount.values()) {
-      if (v >= 3) done++;
+      if (v >= currentReps) done++;
     }
     return done;
-  }, [correctCount]);
+  }, [correctCount, currentReps]);
 
   const progressPercentage = useMemo(() => {
+    if (currentMode === 'exam') {
+      if (queue.length === 0) return 0;
+      return Math.round((currentQuestionIndex / queue.length) * 100);
+    }
     if (totalGoal === 0) return 0;
     return Math.round((completedCount / totalGoal) * 100);
-  }, [completedCount, totalGoal]);
+  }, [currentMode, completedCount, totalGoal, currentQuestionIndex, queue.length]);
 
   const currentQuestion = useMemo(() => {
     return currentQuestionIndex < queue.length ? queue[currentQuestionIndex] : null;
@@ -125,6 +133,19 @@ export function QuizProvider({ questions, children }: QuizProviderProps) {
 
       const id = currentQuestion.id;
 
+      if (currentMode === 'exam') {
+        setAnswered((prev) => new Map(prev).set(id, correct));
+        if (correct) {
+          setCorrectCount((prev) => {
+            const next = new Map(prev);
+            next.set(id, (prev.get(id) ?? 0) + 1);
+            return next;
+          });
+        }
+        return;
+      }
+
+      // Modo estudio
       if (correct) {
         setCorrectCount((prev) => {
           const newCount = (prev.get(id) ?? 0) + 1;
@@ -136,7 +157,7 @@ export function QuizProvider({ questions, children }: QuizProviderProps) {
 
         const currentCount = correctCount.get(id) ?? 0;
         const newCount = currentCount + 1;
-        if (newCount < 3) {
+        if (newCount < currentReps) {
           setQueue((prev) =>
             insertWithGap(prev, currentQuestionIndex, shuffleOptions(currentQuestion))
           );
@@ -148,7 +169,7 @@ export function QuizProvider({ questions, children }: QuizProviderProps) {
         );
       }
     },
-    [currentQuestion, isAnswered, correctCount, currentQuestionIndex]
+    [currentQuestion, isAnswered, correctCount, currentQuestionIndex, currentMode, currentReps]
   );
 
   const nextQuestion = useCallback(() => {
@@ -169,12 +190,21 @@ export function QuizProvider({ questions, children }: QuizProviderProps) {
   }, [originalQuestions]);
 
   const getStats = useCallback(() => {
+    if (currentMode === 'exam') {
+      let examCorrect = 0;
+      answered.forEach((v) => { if (v) examCorrect++; });
+      return {
+        correct: examCorrect,
+        incorrect: totalQuestions - examCorrect,
+        total: totalQuestions,
+      };
+    }
     return {
       correct: score,
       incorrect: totalQuestions - score,
       total: totalQuestions,
     };
-  }, [score, totalQuestions]);
+  }, [score, totalQuestions, currentMode, answered]);
 
   const saveProgress = useCallback(() => {
     const remaining = queue.slice(currentQuestionIndex);
@@ -189,6 +219,8 @@ export function QuizProvider({ questions, children }: QuizProviderProps) {
       originalQuestions,
       queue: remaining,
       correctCount: countRecord,
+      mode: currentMode,
+      reps: currentReps,
     };
 
     const blob = new Blob([JSON.stringify(state, null, 2)], {
@@ -200,7 +232,7 @@ export function QuizProvider({ questions, children }: QuizProviderProps) {
     a.download = 'progreso-quiz.json';
     a.click();
     URL.revokeObjectURL(url);
-  }, [queue, currentQuestionIndex, correctCount, originalQuestions]);
+  }, [queue, currentQuestionIndex, correctCount, originalQuestions, currentMode, currentReps]);
 
   const loadProgress = useCallback(async (file: File) => {
     const text = await file.text();
@@ -238,6 +270,8 @@ export function QuizProvider({ questions, children }: QuizProviderProps) {
     isCorrect,
     feedback,
     progressPercentage,
+    mode: currentMode,
+    reps: currentReps,
     answerQuestion,
     resetQuiz,
     nextQuestion,
