@@ -322,4 +322,9 @@
 . Esta precisión de "doble extensión" utiliza exactamente 80 bits (10 bytes consecutivos)
 , lo cual coincide con la capacidad de los registros de la FPU.</note>
   </question>
+  <question id="q32" type="fill-text">
+    <text>El registro CS contiene 1AF0h, la instrucción que se está ejecutando tuvo un IP de 0AA8h y era de dos (2) byte de longitud y no cambió la secuencia normal de operación. En base a lo anterior, calcule la dirección física de la siguiente instrucción a ejecutarse. </text>
+    <answer>1B9AA</answer>
+    <note>El IP (Instruction Pointer) se incrementa automáticamente después de leer una instrucción. Por lo tanto, la siguiente instrucción a ejecutar estará en la dirección 0AA8h + 2h = 0AAAh. Sin embargo, el registro CS contiene 1AF0h*10H, por lo que la dirección física de la siguiente instrucción a ejecutarse será 1AF00h + 0AAAh = 1B9AAh.</note>
+  </question>
 </quiz>
