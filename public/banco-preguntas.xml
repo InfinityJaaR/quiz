@@ -314,4 +314,12 @@
     <option id="e">Se reinicia el procesador</option>
     <note>La secuencia técnica incluye salvar banderas, limpiar IF/TF y salvar direcciones de retorno (CS:IP) en la pila.</note>
   </question>
+
+  <question id="q31" type="fill-text">
+    <text>¿De cuantos bits son los registros de datos de la FPU? (8, 16, 32, 64 ...)</text>
+    <answer>80</answer>
+    <note>Manejo de datos de Punto Flotante: Su propósito se relaciona con la aritmética de los números de punto flotante (basados en el estándar IEEE 754). La arquitectura IA-32 define que se puede operar en tres precisiones: precisión simple (32 bits), precisión doble (64 bits) y precisión con doble extensión
+. Esta precisión de "doble extensión" utiliza exactamente 80 bits (10 bytes consecutivos)
+, lo cual coincide con la capacidad de los registros de la FPU.</note>
+  </question>
 </quiz>
