@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/select';
 import { MatchingQuestion } from '@/lib/quiz-types';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 interface MatchingQuestionProps {
   question: MatchingQuestion;
@@ -26,6 +26,15 @@ export default function MatchingQuestion({
   onAnswer,
 }: MatchingQuestionProps) {
   const [matches, setMatches] = useState<Record<string, string>>({});
+
+  const shuffledRights = useMemo(() => {
+    const arr = [...question.pairs];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }, [question.id]);
 
   const handleMatch = (pairId: string, rightId: string) => {
     if (!isAnswered) {
@@ -80,16 +89,11 @@ export default function MatchingQuestion({
                   <SelectValue placeholder="Selecciona..." />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value={pair.id} key={pair.id}>
-                    {pair.right}
-                  </SelectItem>
-                  {question.pairs
-                    .filter((p) => p.id !== pair.id)
-                    .map((p) => (
-                      <SelectItem key={p.id} value={p.id}>
-                        {p.right}
-                      </SelectItem>
-                    ))}
+                  {shuffledRights.map((p) => (
+                    <SelectItem key={p.id} value={p.id}>
+                      {p.right}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
