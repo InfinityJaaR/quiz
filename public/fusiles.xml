@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question id="f1" type="fill-text">
+    <text>¿De cuántos bits son los registros de datos de la FPU? (8, 16, 32 ...)</text>
+    <answer>80</answer>
+    <note>Los valores dobles de precisión extendida se almacenan en 10 bytes consecutivos, lo que equivale a 80 bits[cite: 672, 692].</note>
+  </question>
+
+  <question id="f2" type="matching">
+    <text>Empareje los nombres del Registro de Banderas con sus respectivos Indicadores.</text>
+    <pair id="p1">
+      <left>Bandera de resultado cero</left>
+      <right>ZF</right>
+    </pair>
+    <pair id="p2">
+      <left>Bandera Trampa</left>
+      <right>TF</right>
+    </pair>
+    <pair id="p3">
+      <left>Bandera de interrupción</left>
+      <right>IF</right>
+    </pair>
+    <pair id="p4">
+      <left>Bandera de signo</left>
+      <right>SF</right>
+    </pair>
+    <pair id="p5">
+      <left>Bandera de overflow</left>
+      <right>OF</right>
+    </pair>
+    <pair id="p6">
+      <left>Bandera de dirección</left>
+      <right>DF</right>
+    </pair>
+    <note>Cada indicador corresponde a su mnemónico en el registro de indicadores de 16 bits[cite: 992].</note>
+  </question>
+
+  <question id="f3" type="single-choice" correct="b">
+    <text>Seleccione la opción que le permite identificar todos los componentes del Bus Interface Unit (BIU).</text>
+    <option id="a">Los registros de segmentos, la cola de prefetch, el generador de direcciones físicas y los registros generales</option>
+    <option id="b">Los registros de segmentos, la cola de prefetch, el Bus C y el generador de direcciones físicas</option>
+    <option id="c">La cola de prefetch, los registros de segmentos, los registros generales, el generador de direcciones físicas y el Bus C</option>
+    <option id="d">Los registros generales, la cola de prefetch, el generador de direcciones físicas y el Bus C</option>
+    <note>La BIU incluye los registros de segmentos, la cola de prefetch, el generador de direcciones físicas y el Bus C[cite: 830, 831, 832, 833, 834]. Los registros generales pertenecen a la EU.</note>
+  </question>
+
+  <question id="f4" type="multiple-choice" correct="e,f">
+    <text>Marque todas las acciones que considere son realizadas por la EU:</text>
+    <option id="a">Cargar el registro CS con el inicio del segmento de código</option>
+    <option id="b">Decodificar la instrucción</option>
+    <option id="c">Traer la instrucción de memoria</option>
+    <option id="d">Traer los datos de memoria, si se requieren</option>
+    <option id="e">Almacena los resultados en memoria, si aplica</option>
+    <option id="f">Ejecuta las instrucciones</option>
+    <note>La EU se encarga de decodificar, ejecutar las instrucciones y almacenar los resultados[cite: 776, 777, 778, 886]. Las demás son funciones de la BIU.</note>
+  </question>
+
+  <question id="f5" type="single-choice" correct="c">
+    <text>Sección del procesador que coordina los procesos de Fetch y Execute.</text>
+    <option id="a">Execution Unit</option>
+    <option id="b">Los Registros de Segmento</option>
+    <option id="c">Unidad de Control</option>
+    <option id="d">Unidad Interface del Bus</option>
+    <note>La Unidad de Control coordina la secuencia de pasos de los procesos de Fetch y Execute[cite: 883].</note>
+  </question>
+
+  <question id="f6" type="true-false">
+    <text>El signo del número 0000A0C7h escrito en formato hexadecimal de 32 bits es negativo.</text>
+    <answer>false</answer>
+    <note>En 32 bits, el bit más significativo (MSB) es el bit 31. Como el número inicia con 0000..., el MSB es 0, por lo tanto es positivo[cite: 622, 623].</note>
+  </question>
+
+  <question id="f7" type="fill-text">
+    <text>El registro CS contiene 1AF0h, la instrucción que se está ejecutando tuvo un IP de 0AA8h y era de dos (2) bytes de longitud. Calcule la dirección física de la siguiente instrucción a ejecutarse.</text>
+    <answer>1B9AA</answer>
+    <note>Nueva IP = 0AA8h + 2 = 0AAAh. Dirección física = CS * 10h + IP = 1AF00h + 0AAAh = 1B9AAh.</note>
+  </question>
+
+  <question id="f8" type="multiple-choice" correct="c,d,f">
+    <text>Marque todas las acciones que considere son realizadas por el BIU:</text>
+    <option id="a">Ejecuta las instrucciones</option>
+    <option id="b">Cargar el registro CS con el inicio del segmento de código</option>
+    <option id="c">Traer la instrucción de memoria</option>
+    <option id="d">Traer los datos de memoria, si se requieren</option>
+    <option id="e">Almacena los resultados en memoria, si aplica</option>
+    <option id="f">Decodificar la instrucción</option>
+    <option id="g">Poner el registro IP a cero</option>
+    <note>La BIU realiza el Fetch: trae instrucciones y datos de memoria y maneja los registros de segmento[cite: 771, 773, 775, 831].</note>
+  </question>
+
+  <question id="f9" type="fill-text">
+    <text>¿Qué bandera se activa cuando el resultado de una operación aritmética sin signo es demasiado grande como para ser contenido en el operando destino? ___________</text>
+    <answer>CF</answer>
+    <note>El Carry Flag (CF) se utiliza para detectar desbordamientos en operaciones sin signo (unsigned), mientras que el Overflow Flag (OF) es para operaciones con signo.</note>
+  </question>
+
+  <question id="f10" type="multiple-choice" correct="a,b,g,h,i,j">
+    <text>Marque todos los componentes de la Execution Unit (EU):</text>
+    <option id="a">Bus A</option>
+    <option id="b">ALU</option>
+    <option id="c">El Bus C</option>
+    <option id="d">La cola de prefetch</option>
+    <option id="e">Registros de índice</option>
+    <option id="f">El generador de direcciones físicas</option>
+    <option id="g">Unidad de control</option>
+    <option id="h">Registros de propósito general</option>
+    <option id="i">Los registros de segmento</option>
+    <option id="j">Registro de Banderas</option>
+    <note>La Unidad de Ejecución (EU) contiene: Unidad de Control, Registros de propósito general, Registros de índice, ALU, Registro de Banderas y el Bus A[cite: 856, 858, 859, 860, 862, 863, 868, 874]. Los elementos Bus C, Cola de prefetch, Generador de direcciones y Registros de segmento pertenecen a la BIU[cite: 830, 831, 832, 833, 834].</note>
+  </question>
+
+  <question id="f11" type="multiple-choice" correct="c,f,g">
+    <text>Marque todas las opciones que considere sean desventajas del Lenguaje Ensamblador:</text>
+    <option id="a">Velocidad</option>
+    <option id="b">Eficiencia de tamaño</option>
+    <option id="c">Programas fuentes grandes</option>
+    <option id="d">Tiempo de programación</option>
+    <option id="e">Flexibilidad</option>
+    <option id="f">Peligro de afectar recursos inesperadamente</option>
+    <option id="g">Falta de portabilidad.</option>
+    <note>Según el material de estudio, las desventajas son: el tiempo de programación , el gran tamaño de los programas fuente , el peligro de afectar recursos inesperadamente  y la falta de portabilidad. La velocidad, eficiencia y flexibilidad se consideran ventajas.</note>
+  </question>
+
+  <question id="f12" type="single-choice" correct="c">
+    <text>Seleccione la opción que le permite identificar todos los Registros de Segmento del procesador Pentium:</text>
+    <option id="a">DS, CS, SS, FS, GS, HS</option>
+    <option id="b">DS, CS, BS, ES, FS, GS</option>
+    <option id="c">SS, DS, CS, ES, FS, GS</option>
+    <option id="d">DS, CS, SS, KS, FS, GS</option>
+    <option id="e">GS, FS, DS, CS, BS, SS</option>
+    <note>Los procesadores Pentium pertenecen a la arquitectura IA-32. Esta arquitectura utiliza seis registros de segmento de 16 bits: los cuatro originales (CS, DS, SS, ES) heredados del 8086/286 y los dos adicionales (FS, GS) introducidos a partir de la familia Intel386.</note>
+  </question>
+
+  <question id="f13" type="fill-text">
+    <text>¿Qué bandera se activa cuando el resultado de una operación aritmética con signo es demasiado grande como para ser contenido en el operando destino?</text>
+    <answer>OF</answer>
+    <note>La bandera de overflow (OF) toma el valor uno (1) si el resultado entero es un número positivo demasiado grande o un número negativo demasiado pequeño para ser contenido en el operando de destino. Esta bandera indica específicamente una condición de desbordamiento para la aritmética de enteros con signo.</note>
+  </question>
+</quiz>

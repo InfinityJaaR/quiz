@@ -1,13 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { QuizProvider } from '@/hooks/useQuiz';
 import { parseXMLQuiz } from '@/lib/xml-parser';
 import QuizScreen from '@/components/QuizScreen';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
-import { BookOpen, Loader2, GraduationCap, RefreshCw, ClipboardList } from 'lucide-react';
+import { BookOpen, Loader2, GraduationCap, RefreshCw, ClipboardList, Target } from 'lucide-react';
 import type { QuizQuestion, QuizMode } from '@/lib/quiz-types';
 
 type QuizConfig =
@@ -161,6 +162,29 @@ export default function HomeWithXML() {
               </p>
             </div>
 
+            {/* Enlace a otros simulacros */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+            >
+              <p className="text-center text-sm text-muted-foreground mb-3">Otros simulacros disponibles</p>
+              <Link href="/fusiles">
+                <Card className="p-4 bg-card border-border cursor-pointer hover:border-orange-500/50 transition-all flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-white shrink-0">
+                    <Target className="w-5 h-5" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-bold text-foreground">Simulacro Fusiles</h3>
+                    <p className="text-xs text-muted-foreground">Examen de práctica • Modo simulacro</p>
+                  </div>
+                  <Button variant="outline" size="sm" className="shrink-0">
+                    Ir
+                  </Button>
+                </Card>
+              </Link>
+            </motion.div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {MODES.map((m, i) => (
                 <motion.div
@@ -194,6 +218,7 @@ export default function HomeWithXML() {
                 </motion.div>
               ))}
             </div>
+
           </motion.div>
         ) : (
           /* Quiz activo */
