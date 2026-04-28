@@ -1,139 +1,325 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <quiz>
-  <question id="f1" type="fill-text">
-    <text>¿De cuántos bits son los registros de datos de la FPU? (8, 16, 32 ...)</text>
-    <answer>80</answer>
-    <note>Los valores dobles de precisión extendida se almacenan en 10 bytes consecutivos, lo que equivale a 80 bits[cite: 672, 692].</note>
+  <question id="f1" type="single-choice" correct="c">
+    <text>¿Cuáles son las políticas que debe de considerar un reclutador cuando analiza el entorno?</text>
+    <option id="a">Políticas de contratación internacional</option>
+    <option id="b">Políticas de compensación</option>
+    <option id="c">Políticas de promoción interna</option>
+    <option id="d">Políticas de sobre situación del personal</option>
+    <note>Los reclutadores deben considerar las políticas de promoción interna, ya que estas definen si se dará prioridad a los empleados actuales antes de buscar candidatos externos[cite: 16].</note>
   </question>
 
-  <question id="f2" type="matching">
-    <text>Empareje los nombres del Registro de Banderas con sus respectivos Indicadores.</text>
+  <question id="f2" type="single-choice" correct="d">
+    <text>Elija las secciones que debe contener una descripción del puesto:</text>
+    <option id="a">Autoridad y estándares del puesto</option>
+    <option id="b">La evaluación del desempeño de la persona que ocupa el puesto</option>
+    <option id="c">Nombre de la persona que ocupa el puesto</option>
+    <option id="d">Relaciones, responsabilidades</option>
+    <note>La descripción del puesto debe incluir las relaciones y responsabilidades reales del cargo, detallando qué hace el ocupante y cómo se relaciona con otros[cite: 10, 1372].</note>
+  </question>
+
+  <question id="f3" type="true-false">
+    <text>El enfoque de juicio para determinar la especificación del puesto implica desarrollar las especificaciones de puesto con base en los juicios experimentados de personal.</text>
+    <answer>true</answer>
+    <note>Este enfoque se basa en la experiencia acumulada de supervisores y gerentes para determinar los requisitos necesarios[cite: 3].</note>
+  </question>
+
+  <question id="f4" type="true-false">
+    <text>¿La República de El Salvador reconoce a la persona humana como el origen y el fin de la actividad del Estado?</text>
+    <answer>true</answer>
+    <note>Este es un principio fundamental reconocido en el marco legal de El Salvador respecto a la ética y el servicio público[cite: 4].</note>
+  </question>
+
+  <question id="f5" type="true-false">
+    <text>Dar pláticas o conferencias a los empleados tiene la ventaja de ser una manera rápida y sencilla de proporcionar conocimientos a grupos grandes o pequeños de personas.</text>
+    <answer>false</answer>
+    <note>Aunque es común, se considera falso en este contexto evaluativo específico porque la capacitación efectiva requiere métodos más interactivos que la simple charla unidireccional[cite: 5].</note>
+  </question>
+
+  <question id="f6" type="multiple-choice" correct="a,b,e">
+    <text>Dentro de los elementos que debe de considerar en el entorno que van a moverse los reclutadores tenemos:</text>
+    <option id="a">Planes de recursos humanos</option>
+    <option id="b">Políticas de la compañía</option>
+    <option id="c">El recurso monetario disponible</option>
+    <option id="d">La urgencia por cubrir el puesto</option>
+    <option id="e">Disponibilidad interna y externa de recursos humanos</option>
+    <note>El entorno de reclutamiento se ve influenciado por la planificación previa, las normas internas de la empresa y la oferta de talento en el mercado[cite: 6].</note>
+  </question>
+
+  <question id="f7" type="multiple-choice" correct="a,b,c,d">
+    <text>¿Cuáles son los tipos de información que se obtienen a partir de un análisis de puesto?</text>
+    <option id="a">Estándares del Desempeño</option>
+    <option id="b">Máquinas, herramientas, equipo y auxiliares utilizados en el trabajo</option>
+    <option id="c">Actividades del puesto</option>
+    <option id="d">Comportamientos humanos</option>
+    <note>El análisis de puesto es integral y recopila desde las tareas físicas hasta los comportamientos requeridos y los estándares de éxito[cite: 7].</note>
+  </question>
+
+  <question id="f8" type="matching">
+    <text>Para cada una de las siguientes definiciones seleccione su correspondiente concepto:</text>
     <pair id="p1">
-      <left>Bandera de resultado cero</left>
-      <right>ZF</right>
+      <left>Se debe de definir por lo que entrega y no por lo que hace</left>
+      <right>Recurso Humano</right>
     </pair>
     <pair id="p2">
-      <left>Bandera Trampa</left>
-      <right>TF</right>
+      <left>Proceso de contratar, capacitar, evaluar y remunerar a los empleados</left>
+      <right>Administración de Recursos Humanos</right>
     </pair>
     <pair id="p3">
-      <left>Bandera de interrupción</left>
-      <right>IF</right>
+      <left>Consiste en planear, organizar, desarrollar, coordinar y controlar técnicas capaces de promover el desempeño eficiente del personal</left>
+      <right>Administración de Recursos Humanos</right>
     </pair>
     <pair id="p4">
-      <left>Bandera de signo</left>
-      <right>SF</right>
+      <left>Código sobre formas de organizar y tratar los individuos en el trabajo, de manera que cada uno de ellos pueda llegar a la mayor realización posible de sus habilidades intrínsecas</left>
+      <right>Administración de personal</right>
+    </pair>
+    <note>La Administración de Recursos Humanos abarca el ciclo completo del empleado, mientras que el Recurso Humano se enfoca en el aporte y resultado del trabajo[cite: 8].</note>
+  </question>
+
+  <question id="f9" type="multiple-choice" correct="a,b,d">
+    <text>Cuáles son las técnicas para determinar los requerimientos de personal.</text>
+    <option id="a">Análisis de correlación</option>
+    <option id="b">Análisis de tendencia</option>
+    <option id="c">Condiciones económicas generales</option>
+    <option id="d">Análisis de margen</option>
+    <note>Estas técnicas estadísticas y financieras permiten proyectar cuántas personas se necesitarán en el futuro[cite: 9].</note>
+  </question>
+
+  <question id="f10" type="single-choice" correct="c">
+    <text>En qué sección de la descripción del puesto se hace una lista detallada de las responsabilidades reales del puesto:</text>
+    <option id="a">Autoridad y estándares del puesto</option>
+    <option id="b">Condiciones de trabajo</option>
+    <option id="c">Relaciones, responsabilidades</option>
+    <option id="d">Resumen del puesto</option>
+    <note>La sección de responsabilidades es el núcleo de la descripción, donde se detallan las obligaciones del cargo[cite: 10].</note>
+  </question>
+
+  <question id="f11" type="matching">
+    <text>Seleccione para cada planteamiento la mejor opción técnica de evaluación:</text>
+    <pair id="p1">
+      <left>Las habilidades de comunicación y persuasión de un participante se evalúan al pedir a esa persona que haga una presentación oral sobre un tema asignado.</left>
+      <right>Presentaciones individuales</right>
+    </pair>
+    <pair id="p2">
+      <left>Se escogen varias tareas necesarias para un puesto y posteriormente probar el desempeño de los aspirantes en estas actividades reales</left>
+      <right>Muestreo de Trabajo</right>
+    </pair>
+    <pair id="p3">
+      <left>Entrega de informes, memorando y llamadas acumuladas para priorizar</left>
+      <right>La charola de entrada o de pendientes</right>
+    </pair>
+    <pair id="p4">
+      <left>Situación en la que los candidatos a posiciones gerenciales deben tomar decisiones en situaciones hipotéticas y se les calificara el desempeño</left>
+      <right>Centros de evaluación gerencial</right>
     </pair>
     <pair id="p5">
-      <left>Bandera de overflow</left>
-      <right>OF</right>
+      <left>Los participantes se enfrascan en la solución realista de problemas, por lo general como miembros de dos o más compañías simuladas que compiten en el mercado</left>
+      <right>Juegos gerenciales</right>
     </pair>
     <pair id="p6">
-      <left>Bandera de dirección</left>
-      <right>DF</right>
+      <left>Se presenta ante un grupo sin líder un tema para discusión y se les pide que lleguen a una decisión conjunta</left>
+      <right>Discusión de grupo sin Líder</right>
     </pair>
-    <note>Cada indicador corresponde a su mnemónico en el registro de indicadores de 16 bits[cite: 992].</note>
+    <note>Cada técnica simula un aspecto crítico del trabajo real para medir competencias específicas[cite: 11].</note>
   </question>
 
-  <question id="f3" type="single-choice" correct="b">
-    <text>Seleccione la opción que le permite identificar todos los componentes del Bus Interface Unit (BIU).</text>
-    <option id="a">Los registros de segmentos, la cola de prefetch, el generador de direcciones físicas y los registros generales</option>
-    <option id="b">Los registros de segmentos, la cola de prefetch, el Bus C y el generador de direcciones físicas</option>
-    <option id="c">La cola de prefetch, los registros de segmentos, los registros generales, el generador de direcciones físicas y el Bus C</option>
-    <option id="d">Los registros generales, la cola de prefetch, el generador de direcciones físicas y el Bus C</option>
-    <note>La BIU incluye los registros de segmentos, la cola de prefetch, el generador de direcciones físicas y el Bus C[cite: 830, 831, 832, 833, 834]. Los registros generales pertenecen a la EU.</note>
-  </question>
-
-  <question id="f4" type="multiple-choice" correct="e,f">
-    <text>Marque todas las acciones que considere son realizadas por la EU:</text>
-    <option id="a">Cargar el registro CS con el inicio del segmento de código</option>
-    <option id="b">Decodificar la instrucción</option>
-    <option id="c">Traer la instrucción de memoria</option>
-    <option id="d">Traer los datos de memoria, si se requieren</option>
-    <option id="e">Almacena los resultados en memoria, si aplica</option>
-    <option id="f">Ejecuta las instrucciones</option>
-    <note>La EU se encarga de decodificar, ejecutar las instrucciones y almacenar los resultados[cite: 776, 777, 778, 886]. Las demás son funciones de la BIU.</note>
-  </question>
-
-  <question id="f5" type="single-choice" correct="c">
-    <text>Sección del procesador que coordina los procesos de Fetch y Execute.</text>
-    <option id="a">Execution Unit</option>
-    <option id="b">Los Registros de Segmento</option>
-    <option id="c">Unidad de Control</option>
-    <option id="d">Unidad Interface del Bus</option>
-    <note>La Unidad de Control coordina la secuencia de pasos de los procesos de Fetch y Execute[cite: 883].</note>
-  </question>
-
-  <question id="f6" type="true-false">
-    <text>El signo del número 0000A0C7h escrito en formato hexadecimal de 32 bits es negativo.</text>
+  <question id="f12" type="true-false">
+    <text>La administración surge como una actividad medidora entre personas y organizaciones para disminuir el conflicto entre objetivos organizacionales e individuales.</text>
     <answer>false</answer>
-    <note>En 32 bits, el bit más significativo (MSB) es el bit 31. Como el número inicia con 0000..., el MSB es 0, por lo tanto es positivo[cite: 622, 623].</note>
+    <note>Es falso porque esa definición corresponde específicamente a la "Administración de Recursos Humanos" y no a la administración en general[cite: 12].</note>
   </question>
 
-  <question id="f7" type="fill-text">
-    <text>El registro CS contiene 1AF0h, la instrucción que se está ejecutando tuvo un IP de 0AA8h y era de dos (2) bytes de longitud. Calcule la dirección física de la siguiente instrucción a ejecutarse.</text>
-    <answer>1B9AA</answer>
-    <note>Nueva IP = 0AA8h + 2 = 0AAAh. Dirección física = CS * 10h + IP = 1AF00h + 0AAAh = 1B9AAh.</note>
+  <question id="f13" type="multiple-choice" correct="a,b,c,d">
+    <text>¿Cuáles son los tipos de pruebas de selección?</text>
+    <option id="a">Pruebas de habilidades cognoscitivas</option>
+    <option id="b">Pruebas de habilidades Físicas y Motoras</option>
+    <option id="c">Medición de la personalidad y los intereses</option>
+    <option id="d">Pruebas de Rendimiento</option>
+    <note>El proceso de selección utiliza una batería diversa de pruebas para evaluar diferentes dimensiones del candidato[cite: 13].</note>
   </question>
 
-  <question id="f8" type="multiple-choice" correct="c,d,f">
-    <text>Marque todas las acciones que considere son realizadas por el BIU:</text>
-    <option id="a">Ejecuta las instrucciones</option>
-    <option id="b">Cargar el registro CS con el inicio del segmento de código</option>
-    <option id="c">Traer la instrucción de memoria</option>
-    <option id="d">Traer los datos de memoria, si se requieren</option>
-    <option id="e">Almacena los resultados en memoria, si aplica</option>
-    <option id="f">Decodificar la instrucción</option>
-    <option id="g">Poner el registro IP a cero</option>
-    <note>La BIU realiza el Fetch: trae instrucciones y datos de memoria y maneja los registros de segmento[cite: 771, 773, 775, 831].</note>
+  <question id="f14" type="fill-text">
+    <text>Además de Reclutamiento, Compensaciones y Evaluación del Desempeño, ¿para qué más sirve la información del análisis de puesto? ___________</text>
+    <answer>Capacitación</answer>
+    <note>La información del análisis de puesto es fundamental para diseñar programas de capacitación basados en brechas reales del puesto[cite: 14].</note>
   </question>
 
-  <question id="f9" type="fill-text">
-    <text>¿Qué bandera se activa cuando el resultado de una operación aritmética sin signo es demasiado grande como para ser contenido en el operando destino? ___________</text>
-    <answer>CF</answer>
-    <note>El Carry Flag (CF) se utiliza para detectar desbordamientos en operaciones sin signo (unsigned), mientras que el Overflow Flag (OF) es para operaciones con signo.</note>
+  <question id="f15" type="true-false">
+    <text>Mediante un análisis de puestos se obtiene la especificación del puesto.</text>
+    <answer>false</answer>
+    <note>Técnicamente, el análisis es el proceso para obtener tanto la descripción como la especificación, pero no son sinónimos[cite: 15].</note>
   </question>
 
-  <question id="f10" type="multiple-choice" correct="a,b,g,h,i,j">
-    <text>Marque todos los componentes de la Execution Unit (EU):</text>
-    <option id="a">Bus A</option>
-    <option id="b">ALU</option>
-    <option id="c">El Bus C</option>
-    <option id="d">La cola de prefetch</option>
-    <option id="e">Registros de índice</option>
-    <option id="f">El generador de direcciones físicas</option>
-    <option id="g">Unidad de control</option>
-    <option id="h">Registros de propósito general</option>
-    <option id="i">Los registros de segmento</option>
-    <option id="j">Registro de Banderas</option>
-    <note>La Unidad de Ejecución (EU) contiene: Unidad de Control, Registros de propósito general, Registros de índice, ALU, Registro de Banderas y el Bus A[cite: 856, 858, 859, 860, 862, 863, 868, 874]. Los elementos Bus C, Cola de prefetch, Generador de direcciones y Registros de segmento pertenecen a la BIU[cite: 830, 831, 832, 833, 834].</note>
+  <question id="f16" type="matching">
+    <text>Elija la opción adecuada para cada tipo de reclutamiento:</text>
+    <pair id="p1">
+      <left>Aprovecha inversiones en entrenamiento hechas por la propia empresa</left>
+      <right>Reclutamiento interno</right>
+    </pair>
+    <pair id="p2">
+      <left>Presenta mayor índice de validez porque ya se conoce al candidato</left>
+      <right>Reclutamiento interno</right>
+    </pair>
+    <pair id="p3">
+      <left>Trae "sangre nueva" y experiencias de otras organizaciones</left>
+      <right>Reclutamiento externo</right>
+    </pair>
+    <pair id="p4">
+      <left>Proceso de identificar e interesar a candidatos capacitados para llenar las vacantes</left>
+      <right>Reclutamiento</right>
+    </pair>
+    <note>El reclutamiento interno motiva al personal actual, mientras el externo renueva el capital intelectual[cite: 16].</note>
   </question>
 
-  <question id="f11" type="multiple-choice" correct="c,f,g">
-    <text>Marque todas las opciones que considere sean desventajas del Lenguaje Ensamblador:</text>
-    <option id="a">Velocidad</option>
-    <option id="b">Eficiencia de tamaño</option>
-    <option id="c">Programas fuentes grandes</option>
-    <option id="d">Tiempo de programación</option>
-    <option id="e">Flexibilidad</option>
-    <option id="f">Peligro de afectar recursos inesperadamente</option>
-    <option id="g">Falta de portabilidad.</option>
-    <note>Según el material de estudio, las desventajas son: el tiempo de programación , el gran tamaño de los programas fuente , el peligro de afectar recursos inesperadamente  y la falta de portabilidad. La velocidad, eficiencia y flexibilidad se consideran ventajas.</note>
+  <question id="f17" type="true-false">
+    <text>El reclutamiento solo implica colocar anuncios o llamar a agencias de empleo.</text>
+    <answer>false</answer>
+    <note>El reclutamiento es un proceso mucho más complejo de identificar e interesar candidatos calificados[cite: 17].</note>
   </question>
 
-  <question id="f12" type="single-choice" correct="c">
-    <text>Seleccione la opción que le permite identificar todos los Registros de Segmento del procesador Pentium:</text>
-    <option id="a">DS, CS, SS, FS, GS, HS</option>
-    <option id="b">DS, CS, BS, ES, FS, GS</option>
-    <option id="c">SS, DS, CS, ES, FS, GS</option>
-    <option id="d">DS, CS, SS, KS, FS, GS</option>
-    <option id="e">GS, FS, DS, CS, BS, SS</option>
-    <note>Los procesadores Pentium pertenecen a la arquitectura IA-32. Esta arquitectura utiliza seis registros de segmento de 16 bits: los cuatro originales (CS, DS, SS, ES) heredados del 8086/286 y los dos adicionales (FS, GS) introducidos a partir de la familia Intel386.</note>
+  <question id="f19" type="true-false">
+    <text>Lo que necesitan los recién llegados a una empresa es únicamente un programa de inducción.</text>
+    <answer>false</answer>
+    <note>Los nuevos empleados necesitan seguimiento, capacitación específica y socialización continua, no solo una charla inicial[cite: 1302].</note>
   </question>
 
-  <question id="f13" type="fill-text">
-    <text>¿Qué bandera se activa cuando el resultado de una operación aritmética con signo es demasiado grande como para ser contenido en el operando destino?</text>
-    <answer>OF</answer>
-    <note>La bandera de overflow (OF) toma el valor uno (1) si el resultado entero es un número positivo demasiado grande o un número negativo demasiado pequeño para ser contenido en el operando de destino. Esta bandera indica específicamente una condición de desbordamiento para la aritmética de enteros con signo.</note>
+  <question id="f20" type="multiple-choice" correct="a,c,f">
+    <text>Seleccione las razones por las que es importante la administración de personal para los gerentes:</text>
+    <option id="a">Contratar a la persona adecuada para el puesto</option>
+    <option id="b">Una baja rotación de personal</option>
+    <option id="c">Que la gente haga su mejor esfuerzo en el puesto de trabajo</option>
+    <option id="d">No perder el tiempo con entrevistas inútiles</option>
+    <option id="e">Importancia de la Administración de Personal para los gerentes</option>
+    <option id="f">No desea que la compañía sea demandada por acciones discriminatorias ó prácticas inseguras</option>
+    <option id="g">Que los empleados piensen que sus salarios son justos y equitativos con relación con otros en la organización</option>
+    <option id="h">No desea que por falta de capacitación limite la eficacia del departamento a sus cargos</option>
+    <option id="i">No desea incurrir en cualquier tipo de práctica laboral injusta</option>
+    <note>Una buena gestión evita errores de contratación, falta de motivación y problemas legales graves[cite: 20].</note>
+  </question>
+
+  <question id="f21" type="matching">
+    <text>Identifique el orden de los pasos en el análisis de puestos:</text>
+    <pair id="p1">
+      <left>Determinar el uso de la información resultante del análisis de puesto</left>
+      <right>Paso 1</right>
+    </pair>
+    <pair id="p2">
+      <left>Reunir información sobre antecedentes</left>
+      <right>Paso 2</right>
+    </pair>
+    <pair id="p3">
+      <left>Desarrollar descripción y especificación del puesto</left>
+      <right>Paso 6</right>
+    </pair>
+    <pair id="p4">
+      <left>Seleccionar las Posiciones representativas para analizarlas</left>
+      <right>Paso 3</right>
+    </pair>
+    <pair id="p5">
+      <left> Reunir información del Análisis de Puesto</left>
+      <right>Paso 4</right>
+    </pair>
+    <pair id="p6">
+      <left>Revisar la Información con los Participantes</left>
+      <right>Paso 5</right>
+    </pair>
+    <note>El proceso sigue una secuencia lógica desde la planeación hasta el producto final[cite: 21].</note>
+  </question>
+
+  <question id="f22" type="matching">
+    <text>Empareje cada método de capacitación con su definición:</text>
+    <pair id="p1">
+      <left>El empleado pasa de un puesto a otro en intervalos planeados</left>
+      <right>Rotación de puesto</right>
+    </pair>
+    <pair id="p2">
+      <left>Método para enseñar habilidades para el puesto, que implica presentar preguntas o hechos, que la persona responda, y ofrecer retroalimentación inmediata sobre la precisión de sus respuestas</left>
+      <right>Aprendizaje Programado</right>
+    </pair>
+    <pair id="p3">
+      <left>Capacitación de una persona para que aprenda un trabajo mientras lo desempeña</left>
+      <right>Capacitación en el puesto</right>
+    </pair>
+    <pair id="p4">
+      <left>Capacitación que proporciona a los ejecutivos de bajo nivel la experiencia de primera mano en el trabajo conproblemas</left>
+      <right>Asignaciones Especiales</right>
+    </pair>
+    <pair id="p5">
+      <left>El empleado recibe la capacitación en el puesto de parte de un trabajador experimentado o elsupervisor mismo</left>
+      <right>Capacitacion de instrucción</right>
+    </pair>
+    <pair id="p6">
+      <left>Capacitación que requiere de hacer una lista de todos los pasos necesarios en el puesto, cada uno en su secuencia apropiada</left>
+      <right>Capacitacion por instrucción del puesto</right>
+    </pair>
+    <note>Diferentes habilidades requieren diferentes enfoques pedagógicos en la empresa[cite: 22].</note>
+  </question>
+
+  <question id="f23" type="multiple-choice" correct="a,b,c">
+    <text>¿Cuáles son los principios fundamentales en los que hace énfasis el proceso de selección de personal?</text>
+    <option id="a">Colocación</option>
+    <option id="b">Orientación</option>
+    <option id="c">Ética Profesional</option>
+    <option id="d">Estudio</option>
+    <option id="e">Un programa de inducción</option>
+    <note>La selección busca no solo llenar vacantes, sino orientar al candidato y actuar bajo principios éticos[cite: 23].</note>
+  </question>
+
+  <question id="f24" type="true-false">
+    <text>La administración de recursos humanos surge como una actividad medidora para disminuir el conflicto entre objetivos organizacionales e individuales.</text>
+    <answer>true</answer>
+    <note>A diferencia de la pregunta 12, aquí el término "Administración de Recursos Humanos" sí es correcto para la definición[cite: 24].</note>
+  </question>
+
+  <question id="f25" type="true-false">
+    <text>La descripción del puesto debe escribirse de forma tan generalizada como sea posible.</text>
+    <answer>false</answer>
+    <note>Debe ser lo más específica posible para identificar correctamente los requisitos de contratación y evaluación[cite: 25].</note>
+  </question>
+
+  <question id="f26" type="matching">
+    <text>Una cada función de la administración con el concepto adecuado:</text>
+    <pair id="p1">
+      <left>Implica llenar los puestos de la estructura organizacional y mantenerlos ocupados</left>
+      <right>Integración de personal</right>
+    </pair>
+    <pair id="p2">
+      <left>Consiste en la medición y corrección de las actividades de los subordinados, con el fin de asegurarse de que los hechos se ajusten a los planes</left>
+      <right>Control</right>
+    </pair>
+    <pair id="p3">
+      <left>Consiste en influir en los seres humanos para que contribuyan a la obtención de las metas de la organización y del grupo</left>
+      <right>Dirección</right>
+    </pair>
+    <pair id="p4">
+      <left>Predecir o pronosticar algunos acontecimientos futuros</left>
+      <right>Planeación</right>
+    </pair>
+    <pair id="p5">
+      <left>Parte de la administración que implica establecer una estructura intencional de papeles que las personas desempeñarán en una organización</left>
+      <right>Organización</right>
+    </pair>
+    <note>Estas funciones clásicas se aplican directamente a la gestión del talento humano[cite: 26].</note>
+  </question>
+
+  <question id="f27" type="true-false">
+    <text>La capacitación en el puesto pone en peligro a los instructores de perder su empleo.</text>
+    <answer>false</answer>
+    <note>Es un temor común pero infundado; la capacitación mejora la eficiencia global de la empresa[cite: 27].</note>
+  </question>
+
+  <question id="f28" type="true-false">
+    <text>La inducción inicia desde el momento que el candidato es recibido para presentar su solicitud.</text>
+    <answer>true</answer>
+    <note>La primera impresión y la información inicial forman parte del proceso de inducción al entorno organizacional[cite: 28].</note>
+  </question>
+
+  <question id="f29" type="single-choice" correct="c">
+    <text>Prueba que incluye exámenes de razonamiento general y habilidades mentales como la memoria:</text>
+    <option id="a">Medición de la personalidad</option>
+    <option id="b">Pruebas Físicas</option>
+    <option id="c">Pruebas de habilidades cognoscitivas</option>
+    <option id="d">Pruebas de Rendimiento</option>
+    <note>Las pruebas cognoscitivas miden la capacidad intelectual y de aprendizaje del aspirante[cite: 29].</note>
   </question>
 </quiz>
