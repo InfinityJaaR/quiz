@@ -56,7 +56,7 @@ export default function HomeWithXML() {
     const loadQuizFromXML = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/banco-preguntas.xml');
+        const response = await fetch('/fusil2.xml');
         if (!response.ok) throw new Error('No se pudo cargar el archivo XML');
 
         const xmlText = await response.text();
