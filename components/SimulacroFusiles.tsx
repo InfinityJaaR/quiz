@@ -21,7 +21,7 @@ export default function SimulacroFusiles() {
     const loadQuiz = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/fusiles.xml');
+        const response = await fetch('/fusil2.xml');
         if (!response.ok) throw new Error('No se pudo cargar el archivo XML');
 
         const xmlText = await response.text();

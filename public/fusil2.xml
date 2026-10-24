@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question id="e1" type="matching">
+    <text>Clasifique de mayor velocidad de acceso a menor velocidad de acceso los diferentes tipos de almacenamiento presentados en la Jerarquía del Almacenamiento. El orden 1 es mayor velocidad de acceso y orden 5 es menor velocidad de acceso.</text>
+    <pair id="p1">
+      <left>Almacenamiento Secundario</left>
+      <right>Orden 3</right>
+    </pair>
+    <pair id="p2">
+      <left>Registros</left>
+      <right>Orden 1</right>
+    </pair>
+    <pair id="p3">
+      <left>Memoria RAM</left>
+      <right>Orden 2</right>
+    </pair>
+    <pair id="p4">
+      <left>Almacenamiento Terciario</left>
+      <right>Orden 4</right>
+    </pair>
+    <note>La revisión confirma los órdenes 3, 1, 2 y 4 para los elementos listados.</note>
+  </question>
+
+  <question id="e2" type="matching">
+    <text>Empareje la definición según corresponda.</text>
+    <pair id="p1">
+      <left>Elementos que se conectan a la Unidad central de proceso a través de las unidades de E/S</left>
+      <right>Dispositivos de E/S</right>
+    </pair>
+    <pair id="p2">
+      <left>Se encargan de hacer la transferencia de información entre la memoria RAM y los periféricos.</left>
+      <right>Unidades de E/S</right>
+    </pair>
+    <note>La revisión confirma las correspondencias con Dispositivos de E/S y Unidades de E/S.</note>
+  </question>
+
+  <question id="e3" type="true-false">
+    <text>En el manejo de la Entrada/Salida programada, el procesador envía la orden de E/S al controlador del dispositivo y no espera.</text>
+    <answer>false</answer>
+    <note>La revisión del intento marca Falso como respuesta correcta.</note>
+  </question>
+
+  <question id="e4" type="single-choice" correct="d">
+    <text>En el Ciclo de Instrucción, indique los puntos de ruptura por DMA</text>
+    <option id="a">antes de Decodificar instrucción, Leer operando, Almacenar resultado</option>
+    <option id="b">después de Leer instrucción, Leer operando, Almacenar resultado</option>
+    <option id="c">antes de leer instrucción, Decodificar instrucción, Leer operando, Ejecutar instrucción, Almacenar resultado</option>
+    <option id="d">antes de leer instrucción, Leer operando, Almacenar resultado</option>
+    <option id="e">antes de leer instrucción, Ejecutar instrucción, Almacenar resultado</option>
+    <note>La revisión del intento señala la opción d como correcta.</note>
+  </question>
+
+  <question id="e5" type="fill-text">
+    <text>Suponga un disco de 200 pistas, actualmente está sirviendo un requerimiento en la pista 125 y acaba de terminar un requerimiento en la pista 86. Si la cola de requerimientos está dada por las pistas 86, 14, 91, 177, 94, 150, 102. Sobre la base de estos datos calcule cual es la cantidad de pistas recorridas utilizando el algoritmos LOOK para poder servir el requerimiento de la pista 86..</text>
+    <answer>143</answer>
+    <note>La respuesta numérica aceptada en la revisión es 143 pistas.</note>
+  </question>
+
+  <question id="e6" type="matching">
+    <text>En la concepción del Almacenamiento Masivo, empareje las definiciones según corresponda</text>
+    <pair id="p1">
+      <left>Paridad por intercalación de bits</left>
+      <right>RAID 3</right>
+    </pair>
+    <pair id="p2">
+      <left>Paridad por intercalación distribuida de bloques</left>
+      <right>RAID 5</right>
+    </pair>
+    <pair id="p3">
+      <left>Paridad por intercalación de bloques</left>
+      <right>RAID 4</right>
+    </pair>
+    <pair id="p4">
+      <left>Copia espejo</left>
+      <right>RAID 1</right>
+    </pair>
+    <pair id="p5">
+      <left>Redundancia por código Hamming</left>
+      <right>RAID 2</right>
+    </pair>
+    <note>La revisión confirma las correspondencias RAID 3, RAID 5, RAID 4, RAID 1 y RAID 2.</note>
+  </question>
+
+  <question id="e7" type="true-false">
+    <text>En el manejo de la Entrada/Salida por interrupciones, el procesador es el responsable de extraer o enviar datos entre la memoria y el controlador del dispositivo.</text>
+    <answer>false</answer>
+    <note>La revisión del intento marca Falso como respuesta correcta.</note>
+  </question>
+
+  <question id="e8" type="true-false">
+    <text>En el manejo de la Entrada/Salida por interrupciones, el procesador envía la orden de E/S al controlador del dispositivo y no espera.</text>
+    <answer>true</answer>
+    <note>La revisión del intento marca Verdadero como respuesta correcta.</note>
+  </question>
+
+  <question id="e9" type="matching">
+    <text>Según la clasificación de los Dispositivos, empareje la definición según corresponda</text>
+    <pair id="p1">
+      <left>Conectan la computadora con otras computadoras</left>
+      <right>Comunicación</right>
+    </pair>
+    <pair id="p2">
+      <left>Proporcionan almacenamiento no volátil de datos y memoria</left>
+      <right>Almacenamiento</right>
+    </pair>
+    <pair id="p3">
+      <left>Permiten la comunicación entre los usuarios y las computadoras</left>
+      <right>Periféricos</right>
+    </pair>
+    <note>La revisión confirma las correspondencias con Comunicación, Almacenamiento y Periféricos.</note>
+  </question>
+
+  <question id="e10" type="fill-text">
+    <text>Suponga un disco de 200 pistas, actualmente está sirviendo un requerimiento en la pista 125 y acaba de terminar un requerimiento en la pista 143. Si la cola de requerimientos está dada por las pistas 86, 14, 91, 177, 94, 150, 102. Sobre la base de estos datos calcule cual es la cantidad de pistas recorridas utilizando el algoritmos SSTF para poder servir el requerimiento de la pista 150.</text>
+    <answer>103</answer>
+    <note>La respuesta numérica aceptada en la revisión es 103 pistas.</note>
+  </question>
+
+  <question id="e11" type="matching">
+    <text>Clasifique de mayor Capacidad a menor Capacidad los diferentes tipos de almacenamiento presentados en la Jerarquía del Almacenamiento. El orden 1 es mayor Capacidad y orden 5 es menor Capacidad.</text>
+    <pair id="p1">
+      <left>Almacenamiento Secundario</left>
+      <right>Orden 2</right>
+    </pair>
+    <pair id="p2">
+      <left>Almacenamiento Terciario</left>
+      <right>Orden 1</right>
+    </pair>
+    <pair id="p3">
+      <left>Registros</left>
+      <right>Orden 4</right>
+    </pair>
+    <pair id="p4">
+      <left>Memoria RAM</left>
+      <right>Orden 3</right>
+    </pair>
+    <note>La revisión confirma los órdenes 2, 1, 4 y 3 para los elementos listados.</note>
+  </question>
+
+  <question id="e12" type="matching">
+    <text>Clasifique de mayor costo a menor costo los diferentes tipos de almacenamiento presentados en la Jerarquía del Almacenamiento. El orden 1 es mayor costo y orden 5 es menor costo.</text>
+    <pair id="p1">
+      <left>Almacenamiento Secundario</left>
+      <right>Orden 3</right>
+    </pair>
+    <pair id="p2">
+      <left>Registros</left>
+      <right>Orden 1</right>
+    </pair>
+    <pair id="p3">
+      <left>Almacenamiento Terciario</left>
+      <right>Orden 4</right>
+    </pair>
+    <pair id="p4">
+      <left>Memoria RAM</left>
+      <right>Orden 2</right>
+    </pair>
+    <note>La revisión confirma los órdenes 3, 1, 4 y 2 para los elementos listados.</note>
+  </question>
+</quiz>
