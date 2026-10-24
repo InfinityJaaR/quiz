@@ -1,12 +1,12 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { SingleChoiceQuestion } from '@/lib/quiz-types';
+import type { SingleChoiceQuestion as SingleChoiceQuestionData } from '@/lib/quiz-types';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 interface SingleChoiceQuestionProps {
-  question: SingleChoiceQuestion;
+  question: SingleChoiceQuestionData;
   isAnswered: boolean;
   isCorrect: boolean | null;
   onAnswer: (answerId: string) => void;

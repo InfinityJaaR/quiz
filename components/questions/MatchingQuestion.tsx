@@ -8,12 +8,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { MatchingQuestion } from '@/lib/quiz-types';
+import type { MatchingQuestion as MatchingQuestionData } from '@/lib/quiz-types';
 import { motion } from 'framer-motion';
 import { useState, useMemo } from 'react';
 
 interface MatchingQuestionProps {
-  question: MatchingQuestion;
+  question: MatchingQuestionData;
   isAnswered: boolean;
   isCorrect: boolean | null;
   onAnswer: (answer: Record<string, string>) => void;
