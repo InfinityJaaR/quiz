@@ -8,12 +8,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { MatchingQuestion } from '@/lib/quiz-types';
+import type { MatchingQuestion as MatchingQuestionData } from '@/lib/quiz-types';
 import { motion } from 'framer-motion';
 import { useState, useMemo } from 'react';
 
 interface MatchingQuestionProps {
-  question: MatchingQuestion;
+  question: MatchingQuestionData;
   isAnswered: boolean;
   isCorrect: boolean | null;
   onAnswer: (answer: Record<string, string>) => void;
@@ -65,7 +65,9 @@ export default function MatchingQuestion({
       </p>
 
       <div className="space-y-4">
-        {question.pairs.map((pair, index) => (
+        {question.pairs.map((pair, index) => {
+          const pairCorrect = matches[pair.id] === pair.id;
+          return (
           <motion.div
             key={pair.id}
             initial={{ opacity: 0, x: -20 }}
@@ -73,8 +75,27 @@ export default function MatchingQuestion({
             transition={{ delay: index * 0.1 }}
             className="flex items-center gap-4"
           >
-            <div className="flex-1 p-3 bg-muted rounded-lg">
+            <div
+              className={`flex-1 p-3 rounded-lg ${
+                isAnswered
+                  ? pairCorrect
+                    ? 'bg-green-900/30 border border-green-600'
+                    : 'bg-red-900/30 border border-red-600'
+                  : 'bg-muted'
+              }`}
+            >
               <p className="text-sm font-medium">{pair.left}</p>
+              {isAnswered && (
+                <p
+                  className={`mt-1 text-xs ${
+                    pairCorrect ? 'text-green-300' : 'text-red-300'
+                  }`}
+                >
+                  {pairCorrect
+                    ? '✓ Correcto'
+                    : `✗ Incorrecto. Correcta: ${pair.right}`}
+                </p>
+              )}
             </div>
 
             <div className="text-muted-foreground">→</div>
@@ -98,7 +119,8 @@ export default function MatchingQuestion({
               </Select>
             </div>
           </motion.div>
-        ))}
+          );
+        })}
       </div>
 
       {!isAnswered && (

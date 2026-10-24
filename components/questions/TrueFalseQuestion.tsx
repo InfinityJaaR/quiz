@@ -1,11 +1,11 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { TrueFalseQuestion } from '@/lib/quiz-types';
+import type { TrueFalseQuestion as TrueFalseQuestionData } from '@/lib/quiz-types';
 import { motion } from 'framer-motion';
 
 interface TrueFalseQuestionProps {
-  question: TrueFalseQuestion;
+  question: TrueFalseQuestionData;
   isAnswered: boolean;
   isCorrect: boolean | null;
   onAnswer: (answer: boolean) => void;

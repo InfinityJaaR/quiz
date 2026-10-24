@@ -2,12 +2,12 @@
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { FillTextQuestion } from '@/lib/quiz-types';
+import type { FillTextQuestion as FillTextQuestionData } from '@/lib/quiz-types';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 interface FillTextQuestionProps {
-  question: FillTextQuestion;
+  question: FillTextQuestionData;
   isAnswered: boolean;
   isCorrect: boolean | null;
   onAnswer: (answer: string) => void;

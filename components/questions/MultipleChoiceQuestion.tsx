@@ -2,12 +2,12 @@
 
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { MultipleChoiceQuestion } from '@/lib/quiz-types';
+import type { MultipleChoiceQuestion as MultipleChoiceQuestionData } from '@/lib/quiz-types';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 interface MultipleChoiceQuestionProps {
-  question: MultipleChoiceQuestion;
+  question: MultipleChoiceQuestionData;
   isAnswered: boolean;
   isCorrect: boolean | null;
   onAnswer: (answerIds: string[]) => void;

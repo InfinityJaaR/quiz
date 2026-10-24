@@ -157,4 +157,49 @@
     </pair>
     <note>La revisión confirma los órdenes 3, 1, 4 y 2 para los elementos listados.</note>
   </question>
+
+  <question id="e13" type="fill-text">
+    <text>Dado un disco con 200 pistas (0-199) donde el cabezal se encuentra en la pista 125, y una cola de solicitudes de E/S en el siguiente orden: 86, 14, 91, 177, 94, 150, 102. ¿Cuál es el número total de pistas que recorre el cabezal para atender TODAS las solicitudes utilizando el algoritmo FCFS (First-Come, First-Served)?</text>
+    <answer>461</answer>
+    <note>FCFS atiende en orden de llegada: 39 + 72 + 77 + 86 + 83 + 56 + 48 = 461 pistas.</note>
+  </question>
+
+  <question id="e14" type="single-choice" correct="a">
+    <text>En el contexto de E/S, ¿qué significa que una llamada sea 'bloqueante'?</text>
+    <option id="a">El proceso que realiza la llamada queda suspendido hasta que la operación de E/S finaliza.</option>
+    <option id="b">La llamada de E/S vuelve inmediatamente, permitiendo al proceso continuar su ejecución.</option>
+    <option id="c">El dispositivo de E/S se bloquea para uso exclusivo de ese proceso.</option>
+    <option id="d">Se produce un error fatal que bloquea todo el sistema operativo.</option>
+    <note>En una llamada bloqueante el proceso queda suspendido hasta que la E/S termina.</note>
+  </question>
+
+  <question id="e15" type="fill-text">
+    <text>Suponga un disco de 200 pistas (0-199), con el cabezal actualmente en la pista 117 y moviéndose hacia pistas de mayor numeración. Si la cola de requerimientos pendientes es {86, 14, 91, 177, 94, 150, 102}, calcule la cantidad total de pistas recorridas por el cabezal utilizando el algoritmo C-SCAN hasta servir el requerimiento de la pista 94.</text>
+    <answer>375</answer>
+    <note>La respuesta numérica es 375 pistas.</note>
+  </question>
+
+  <question id="e16" type="fill-text">
+    <text>Un disco con 200 pistas (0-199) tiene el cabezal en la pista 125, moviéndose en dirección ascendente (el requerimiento anterior fue en la pista 86). La cola de requerimientos es: 86, 14, 91, 177, 94, 150, 102. Calcule la cantidad total de pistas recorridas para servir todos los requerimientos utilizando el algoritmo LOOK.</text>
+    <answer>215</answer>
+    <note>La respuesta numérica es 215 pistas.</note>
+  </question>
+
+  <question id="e17" type="fill-text">
+    <text>Un disco con 200 pistas (numeradas de 0 a 199) tiene la cabeza en la pista 125, después de haber atendido una solicitud en la pista 86. Dada la cola de solicitudes pendientes: 86, 14, 91, 177, 94, 150, 102, ¿cuál es el número total de pistas recorridas por la cabeza para atender todas las solicitudes utilizando el algoritmo C-LOOK?</text>
+    <answer>303</answer>
+    <note>La respuesta numérica es 303 pistas.</note>
+  </question>
+
+  <question id="e18" type="fill-text">
+    <text>Un disco tiene 200 pistas (numeradas de 0 a 199). La cabeza se encuentra en la pista 125 y su movimiento anterior fue desde la pista 143, lo que indica una dirección descendente. Dada la cola de solicitudes pendientes: {86, 14, 91, 177, 94, 150, 102}, ¿cuál es la cantidad total de pistas recorridas por la cabeza para atender la solicitud en la pista 150 utilizando el algoritmo SCAN?</text>
+    <answer>275</answer>
+    <note>La respuesta numérica es 275 pistas.</note>
+  </question>
+
+  <question id="e19" type="fill-text">
+    <text>Un disco tiene la cabeza en la pista 125. Dada la cola de requerimientos pendientes: {86, 14, 91, 177, 94, 150, 102}, calcule el número total de pistas recorridas por la cabeza para servir todas las solicitudes utilizando el algoritmo SSTF (Shortest Service Time First).</text>
+    <answer>293</answer>
+    <note>SSTF: 102, 94, 91, 86, 150, 177, 14 = 23 + 8 + 3 + 5 + 64 + 27 + 163 = 293 pistas.</note>
+  </question>
 </quiz>
